@@ -22,40 +22,71 @@
 <div class="bg-overlay"></div>
 <div class="torch-glow"></div>
 
+<!-- ══════════════════ HEADER MOBILE ══════════════════ -->
+<header class="app-header">
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="header-logo">
+    <span>📖</span>
+    <span class="logo-text">GRIMOIRE</span>
+  </div>
+  <div class="header-spacer"></div>
+</header>
+
 <!-- ══════════════════ SIDEBAR ══════════════════ -->
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-logo">
       <span>📖</span>
       <span class="logo-text">GRIMOIRE</span>
     </div>
     <div class="sidebar-subtitle">The GDR Toolkit</div>
+    <button class="close-menu" aria-label="Close navigation" onclick="toggleMenu()" style="display:none;">✕</button>
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section-label">Navigation</div>
     <div class="nav-item active" data-page="home" onclick="navigate('home',this)">
       <span class="nav-icon">🏰</span><span class="nav-label">Home</span>
     </div>
+    
+    <!-- ═══════ LEARNING LOOPS ═══════ -->
+    <div class="nav-section-label">Learning Loops</div>
+    <div class="learning-loops-hint">Cicli iterativi di apprendimento</div>
+    
     <div class="nav-divider"></div>
-    <div class="nav-section-label">Active Tools</div>
-    <div class="nav-item" data-page="dice" onclick="navigate('dice',this)">
-      <span class="nav-icon">🎲</span><span class="nav-label">Dice Roller</span>
-    </div>
-    <div class="nav-item" data-page="tarot" onclick="navigate('tarot',this)">
-      <span class="nav-icon">🃏</span><span class="nav-label">Tarot Oracle</span>
-    </div>
-    <div class="nav-item" data-page="notes" onclick="navigate('notes',this)">
-      <span class="nav-icon">📝</span><span class="nav-label">Session Notes</span>
-    </div>
-    <div class="nav-item" data-page="initiative" onclick="navigate('initiative',this)">
-      <span class="nav-icon">⚔️</span><span class="nav-label">Combat Tracker</span>
-    </div>
+    <div class="nav-section-label">📚 Pianificazione</div>
     <div class="nav-item" data-page="encounter" onclick="navigate('encounter',this)">
       <span class="nav-icon">📜</span><span class="nav-label">Encounter Gen</span>
+      <span class="nav-loop-badge">plan</span>
     </div>
     <div class="nav-item" data-page="npc" onclick="navigate('npc',this)">
       <span class="nav-icon">🧙</span><span class="nav-label">NPC Forge</span>
+      <span class="nav-loop-badge">plan</span>
     </div>
+    
+    <div class="nav-divider"></div>
+    <div class="nav-section-label">⚡ Esecuzione</div>
+    <div class="nav-item" data-page="dice" onclick="navigate('dice',this)">
+      <span class="nav-icon">🎲</span><span class="nav-label">Dice Roller</span>
+      <span class="nav-loop-badge">execute</span>
+    </div>
+    <div class="nav-item" data-page="initiative" onclick="navigate('initiative',this)">
+      <span class="nav-icon">⚔️</span><span class="nav-label">Combat Tracker</span>
+      <span class="nav-loop-badge">execute</span>
+    </div>
+    
+    <div class="nav-divider"></div>
+    <div class="nav-section-label">📖 Apprendimento</div>
+    <div class="nav-item" data-page="notes" onclick="navigate('notes',this)">
+      <span class="nav-icon">📝</span><span class="nav-label">Session Notes</span>
+      <span class="nav-loop-badge">record</span>
+    </div>
+    <div class="nav-item" data-page="tarot" onclick="navigate('tarot',this)">
+      <span class="nav-icon">🃏</span><span class="nav-label">Tarot Oracle</span>
+      <span class="nav-loop-badge">reflect</span>
+    </div>
+    
     <div class="nav-divider"></div>
     <div class="nav-section-label">Coming Soon</div>
     <div class="nav-item locked" title="Coming soon">
@@ -72,6 +103,9 @@
     </button>
   </div>
 </aside>
+
+<!-- ═════════ SIDEBAR OVERLAY (mobile) ═════════ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
 
 <!-- ══════════════════ MAIN ══════════════════ -->
 <main class="main">
@@ -132,6 +166,81 @@
 
     <!-- Right: tools + lore -->
     <div class="home-content-col">
+      
+      <!-- ════ LEARNING LOOPS VISUAL ════ -->
+      <div class="learning-loops-section">
+        <div class="home-section-title">Learning Loops</div>
+        <div class="learning-loops-container">
+          <svg viewBox="0 0 300 300" class="learning-loops-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <style>
+                .loop-circle { fill: none; stroke-width: 2; }
+                .loop-label { font-family: 'Cinzel', serif; font-size: 12px; text-anchor: middle; font-weight: 600; letter-spacing: 0.05em; }
+                .loop-phase-label { font-size: 11px; opacity: 0.7; }
+                .loop-tool { font-size: 24px; }
+                .loop-arrow { fill: none; stroke-width: 1.5; marker-end: url(#arrowhead); opacity: 0.6; }
+              </style>
+              <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="rgba(200,146,42,.50)" />
+              </marker>
+            </defs>
+            
+            <!-- Outer cycle ring -->
+            <circle cx="150" cy="150" r="130" class="loop-circle" stroke="rgba(200,146,42,.20)"/>
+            
+            <!-- Inner guides -->
+            <circle cx="150" cy="150" r="90" class="loop-circle" stroke="rgba(200,146,42,.10)"/>
+            
+            <!-- Phase 1: PLAN (top-left, green) -->
+            <g>
+              <circle cx="90" cy="80" r="28" fill="rgba(106,184,120,.12)" stroke="rgba(106,184,120,.40)" stroke-width="1.5"/>
+              <text x="90" y="85" class="loop-tool">📚</text>
+              <text x="90" y="118" class="loop-label">PLAN</text>
+              <text x="90" y="132" class="loop-phase-label">Encounter · NPC</text>
+            </g>
+            
+            <!-- Phase 2: EXECUTE (top-right, orange) -->
+            <g>
+              <circle cx="210" cy="80" r="28" fill="rgba(224,112,32,.12)" stroke="rgba(224,112,32,.40)" stroke-width="1.5"/>
+              <text x="210" y="85" class="loop-tool">⚡</text>
+              <text x="210" y="118" class="loop-label">EXECUTE</text>
+              <text x="210" y="132" class="loop-phase-label">Dice · Combat</text>
+            </g>
+            
+            <!-- Phase 3: RECORD (bottom-right, gold) -->
+            <g>
+              <circle cx="220" cy="210" r="28" fill="rgba(200,146,42,.12)" stroke="rgba(200,146,42,.40)" stroke-width="1.5"/>
+              <text x="220" y="215" class="loop-tool">📝</text>
+              <text x="220" y="248" class="loop-label">RECORD</text>
+              <text x="220" y="262" class="loop-phase-label">Session Notes</text>
+            </g>
+            
+            <!-- Phase 4: REFLECT (bottom-left, purple) -->
+            <g>
+              <circle cx="80" cy="210" r="28" fill="rgba(138,106,184,.12)" stroke="rgba(138,106,184,.40)" stroke-width="1.5"/>
+              <text x="80" y="215" class="loop-tool">🃏</text>
+              <text x="80" y="248" class="loop-label">REFLECT</text>
+              <text x="80" y="262" class="loop-phase-label">Tarot Oracle</text>
+            </g>
+            
+            <!-- Connecting arrows showing the cycle -->
+            <path d="M 118 105 Q 150 60 182 105" class="loop-arrow" stroke="rgba(200,146,42,.35)"/>
+            <path d="M 225 108 Q 240 150 225 192" class="loop-arrow" stroke="rgba(200,146,42,.35)"/>
+            <path d="M 182 235 Q 150 260 118 235" class="loop-arrow" stroke="rgba(200,146,42,.35)"/>
+            <path d="M 75 192 Q 60 150 75 108" class="loop-arrow" stroke="rgba(200,146,42,.35)"/>
+            
+            <!-- Center text -->
+            <text x="150" y="155" class="loop-label" style="font-size: 11px; opacity: 0.6;">Continuous</text>
+            <text x="150" y="170" class="loop-label" style="font-size: 11px; opacity: 0.6;">Learning</text>
+          </svg>
+        </div>
+        <p class="learning-loops-description">
+          Quattro fasi interconnesse che formano un ciclo di apprendimento perpetuo: 
+          <strong>pianifica</strong> il tuo incontro, <strong>esegui</strong> il gioco, <strong>registra</strong> i momenti chiave, 
+          <strong>rifletti</strong> su ciò che è accaduto — e ricomincia.
+        </p>
+      </div>
+
       <div class="home-section-title">Your Toolkit</div>
       <div class="tool-list">
         <div class="tool-row" style="--tool-accent:#e8a060" onclick="navigate('dice',null)">
@@ -1518,8 +1627,21 @@ window.addEventListener('beforeunload', () => {
 });
 
 /* ════════════════════════════════════════════════════
-   ROUTER
+   ROUTER & NAVIGATION
 ════════════════════════════════════════════════════ */
+
+/* Toggle sidebar on mobile */
+function toggleMenu() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const toggle = document.getElementById('menuToggle');
+  
+  sidebar.classList.toggle('active');
+  overlay.classList.toggle('active');
+  toggle.classList.toggle('active');
+}
+
+/* Close menu when navigating */
 function navigate(pageId, navEl) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById('page-' + pageId);
@@ -1531,6 +1653,17 @@ function navigate(pageId, navEl) {
     if (m) m.classList.add('active');
   }
   document.querySelector('.main').scrollTop = 0;
+  
+  // Close menu on mobile after navigation
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const toggle = document.getElementById('menuToggle');
+  if (window.innerWidth < 768) {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+    toggle.classList.remove('active');
+  }
+  
   scheduleSave();
 }
 
