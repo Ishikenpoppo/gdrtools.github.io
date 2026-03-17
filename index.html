@@ -126,7 +126,7 @@
     </div>
 
     <!-- ════ INPUT STATE ════ -->
-    <div class="tool-state-input" id="diceStateInput" style="display: none;">
+    <div class="tool-state-input" id="diceStateInput">
       <!-- ── Left: die selector ── -->
       <div class="dice-selector-col">
         <div class="dice-col-header">
@@ -171,7 +171,7 @@
     </div>
 
     <!-- ════ RESULT STATE ════ -->
-    <div class="tool-state-result" id="diceStateResult" style="display: none;">
+    <div class="tool-state-result" id="diceStateResult">
       <div class="result-panel">
         <div class="result-back">
           <span class="bc-link" onclick="switchToolState('dice', 'idle')">← Back</span>
@@ -223,7 +223,7 @@
     </div>
 
     <!-- ════ INPUT STATE (Draw interaction) ════ -->
-    <div class="tool-state-input" id="tarotStateInput" style="display: none; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="tool-state-input tarot-centered" id="tarotStateInput">
       <!-- Starfield -->
       <div class="tarot-stars" id="tarotStars"></div>
 
@@ -252,7 +252,7 @@
     </div>
 
     <!-- ════ RESULT STATE ════ -->
-    <div class="tool-state-result" id="tarotStateResult" style="display: none;">
+    <div class="tool-state-result" id="tarotStateResult">
       <div class="result-panel">
         <div class="result-back">
           <span class="bc-link" onclick="switchToolState('tarot', 'idle')">← Back</span>
@@ -336,7 +336,7 @@
     </div>
 
     <!-- INPUT STATE (note editing) -->
-    <div class="tool-state-input" id="notesStateInput" style="display: none;">
+    <div class="tool-state-input" id="notesStateInput">
       <!-- Left: note list -->
       <div class="notes-list-panel">
         <div class="notes-list-header">
@@ -424,7 +424,7 @@
     </div>
 
     <!-- INPUT STATE (active tracking) -->
-    <div class="tool-state-input" id="initiativeStateInput" style="display: none;">
+    <div class="tool-state-input" id="initiativeStateInput">
       <div class="init-add-panel">
         <div class="init-add-header">
           <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:12.5px;color:var(--ink-dim);opacity:.50;margin-bottom:8px;">
@@ -529,7 +529,7 @@
     </div>
 
     <!-- INPUT STATE (configuration) -->
-    <div class="tool-state-input" id="encounterStateInput" style="display: none;">
+    <div class="tool-state-input" id="encounterStateInput">
       <!-- Left: configuration -->
       <div class="enc-config-panel">
         <div class="enc-config-header">
@@ -639,7 +639,7 @@
     </div><!-- /tool-state-input -->
 
     <!-- RESULT STATE -->
-    <div class="tool-state-result" id="encounterStateResult" style="display: none;">
+    <div class="tool-state-result" id="encounterStateResult">
       <div class="result-panel">
         <div class="result-back"><span class="bc-link" onclick="switchToolState('encounter', 'input')">← Back to Config</span></div>
         <div class="enc-flavor-result" id="encFlavorResult"></div>
@@ -671,7 +671,7 @@
     </div>
 
     <!-- INPUT STATE -->
-    <div class="tool-state-input" id="npcStateInput" style="display: none;">
+    <div class="tool-state-input" id="npcStateInput">
       <!-- Left: configuration -->
       <div class="npc-config-panel">
         <div class="npc-config-header">
@@ -817,7 +817,7 @@
     </div><!-- /tool-state-input -->
 
     <!-- RESULT STATE (fullscreen view) -->
-    <div class="tool-state-result" id="npcStateResult" style="display: none;">
+    <div class="tool-state-result" id="npcStateResult">
       <div class="result-panel">
         <div class="result-back"><span class="bc-link" onclick="switchToolState('npc', 'input')">← Back to Config</span></div>
         <div style="display:grid;grid-template-columns:180px 1fr;gap:12px;margin-bottom:12px">

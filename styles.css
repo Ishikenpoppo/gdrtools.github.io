@@ -558,19 +558,26 @@ body::after {
   background:linear-gradient(155deg,#f0a830 0%,#c87018 48%,#9e4e10 100%);
   border:none; border-top:1px solid rgba(255,220,120,.48); border-bottom:1px solid rgba(0,0,0,.50);
   border-radius:var(--radius); cursor:pointer; position:relative; overflow:hidden;
-  box-shadow:0 0 22px rgba(200,100,20,.35),0 5px 18px rgba(0,0,0,.55);
+  box-shadow:0 0 26px rgba(200,120,30,.44),0 6px 20px rgba(0,0,0,.55);
   transition:all .18s ease;
 }
 .roll-btn::before {
   content:''; position:absolute; inset:0; border-radius:var(--radius);
-  background:linear-gradient(180deg,rgba(255,255,255,.20) 0%,transparent 50%);
+  background:linear-gradient(180deg,rgba(255,255,255,.24) 0%,transparent 50%);
+  pointer-events:none;
+}
+.roll-btn::after {
+  content:''; position:absolute; inset:0;; border-radius:var(--radius);
+  box-shadow:0 0 16px rgba(240,170,40,.30), inset 0 0 10px rgba(240,170,40,.19);
+  opacity:0; transition:opacity .2s ease;
   pointer-events:none;
 }
 .roll-btn:hover {
-  background:linear-gradient(155deg,#f8b840 0%,#d88020 48%,#ae5e18 100%);
-  box-shadow:0 0 42px rgba(240,140,20,.62),0 0 80px rgba(200,80,10,.22),0 5px 20px rgba(0,0,0,.55);
+  background:linear-gradient(155deg,#f9c250 0%,#e0902e 48%,#b35d1a 100%);
+  box-shadow:0 0 56px rgba(240,160,20,.58),0 0 90px rgba(200,90,15,.24),0 6px 20px rgba(0,0,0,.55);
   transform:translateY(-1px);
 }
+.roll-btn:hover::after { opacity:.7; }
 .roll-btn:active { transform:translateY(2px); }
 .roll-btn:disabled { opacity:.42; cursor:not-allowed; transform:none; }
 @keyframes rollPulse {
@@ -694,7 +701,160 @@ body::after {
    TOOL STATE SYSTEM
 ═══════════════════════════════════════════════════ */
 
-/* Idle State - centered welcome panel */
+/* Idle/Input/Result tool state background base */
+.tool-state-idle,
+.tool-state-input,
+.tool-state-result {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(5,4,2,.35);
+}
+.tool-state-idle::before,
+.tool-state-input::before,
+.tool-state-result::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at var(--state-radial-x, 30%) var(--state-radial-y, 30%), var(--state-accent-1, rgba(138,106,184,.28)), transparent 40%),
+    radial-gradient(circle at var(--state-radial-x2, 70%) var(--state-radial-y2, 70%), var(--state-accent-2, rgba(228,183,52,.22)), transparent 45%);
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Generic smoothing for all tool stages */
+.tool-state-input,
+.tool-state-result {
+  padding: var(--sp-8) var(--sp-4);
+  animation: tarotStageFade .6s ease both;
+}
+
+@keyframes tarotStageFade {
+  from { opacity: .0; transform: translateY(8px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Tarot-specific staging colors */
+#page-tarot .tool-state-idle::before,
+#page-tarot .tool-state-input::before,
+#page-tarot .tool-state-result::before {
+  --state-radial-x: 30%;
+  --state-radial-y: 40%;
+  --state-radial-x2: 68%;
+  --state-radial-y2: 65%;
+  --state-accent-1: rgba(145,93,199,.40);
+  --state-accent-2: rgba(200,155,250,.22);
+  background:
+    radial-gradient(circle at 30% 40%, rgba(145,93,199,.40), transparent 38%),
+    radial-gradient(circle at 68% 65%, rgba(200,155,250,.22), transparent 48%);
+}
+#page-tarot .tool-state-idle {
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: var(--sp-10) var(--sp-4);
+}
+#page-tarot .tool-state-input.tarot-centered {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: var(--sp-8) var(--sp-4);
+  background: radial-gradient(circle at 50% 48%, rgba(110,72,180,.42), rgba(7,4,16,.97) 70%);
+}
+#page-tarot .tool-state-input.tarot-centered::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(180,132,240,.24), transparent 35%),
+    radial-gradient(circle at 50% 65%, rgba(72,54,128,.22), transparent 50%),
+    radial-gradient(circle at 50% 88%, rgba(210,170,250,.20), transparent 58%);
+}
+#page-tarot .tool-state-result {
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: var(--sp-8) var(--sp-4);
+  animation: tarotStageFade .65s ease forwards;
+}
+
+#page-tarot .tool-state-idle,
+#page-tarot .tool-state-input.tarot-centered,
+#page-tarot .tool-state-result {
+  min-height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+#page-tarot .tool-state-idle {
+  animation: tarotIdleFloat .9s ease-in-out infinite alternate;
+}
+
+@keyframes tarotIdleFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(7px); }
+}
+
+@keyframes tarotStageFade {
+  0%   { opacity: 0.12; transform: scale(0.985); }
+  60%  { opacity: 0.75; transform: scale(1.005); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Per-tool color themes */
+#page-dice .tool-state-idle::before,
+#page-dice .tool-state-input::before,
+#page-dice .tool-state-result::before {
+  background:
+    radial-gradient(circle at 40% 30%, rgba(240,180,80,.28), transparent 36%),
+    radial-gradient(circle at 70% 68%, rgba(220,130,72,.25), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(252,228,163,.15), transparent 65%);
+}
+#page-encounter .tool-state-idle::before,
+#page-encounter .tool-state-input::before,
+#page-encounter .tool-state-result::before {
+  background:
+    radial-gradient(circle at 34% 34%, rgba(90,170,90,.30), transparent 38%),
+    radial-gradient(circle at 68% 68%, rgba(120,210,135,.23), transparent 47%),
+    radial-gradient(circle at 22% 80%, rgba(156,228,170,.14), transparent 65%);
+}
+#page-npc .tool-state-idle::before,
+#page-npc .tool-state-input::before,
+#page-npc .tool-state-result::before {
+  background:
+    radial-gradient(circle at 30% 28%, rgba(110,170,220,.32), transparent 40%),
+    radial-gradient(circle at 70% 72%, rgba(176,120,210,.26), transparent 46%),
+    radial-gradient(circle at 50% 50%, rgba(67,140,205,.10), transparent 60%);
+}
+#page-initiative .tool-state-idle::before,
+#page-initiative .tool-state-input::before,
+#page-initiative .tool-state-result::before {
+  background:
+    radial-gradient(circle at 28% 30%, rgba(225,100,90,.30), transparent 40%),
+    radial-gradient(circle at 72% 70%, rgba(230,150,100,.24), transparent 48%),
+    radial-gradient(circle at 54% 16%, rgba(255,130,100,.12), transparent 62%);
+}
+#page-notes .tool-state-idle::before,
+#page-notes .tool-state-input::before,
+#page-notes .tool-state-result::before {
+  background:
+    radial-gradient(circle at 32% 34%, rgba(198,170,118,.30), transparent 38%),
+    radial-gradient(circle at 68% 66%, rgba(150,120,78,.22), transparent 46%),
+    radial-gradient(circle at 18% 80%, rgba(205,178,135,.13), transparent 58%);
+}
+
 .tool-state-idle {
   display: flex;
   align-items: center;
@@ -704,6 +864,7 @@ body::after {
 }
 
 .idle-panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -711,6 +872,11 @@ body::after {
   text-align: center;
   max-width: 420px;
   animation: fadeUp .5s ease both;
+  padding: var(--sp-6);
+  background: linear-gradient(180deg, rgba(24,18,12,.85), rgba(11,8,5,.95));
+  box-shadow: 0 0 34px rgba(74,40,120,.35), 0 14px 26px rgba(0,0,0,.56);
+  border: 1px solid rgba(138,106,184,.35);
+  border-radius: 10px;
 }
 
 .idle-icon {
@@ -752,8 +918,17 @@ body::after {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  height: 100%;
+  min-height: 100%;
   animation: fadeUp .35s ease both;
+}
+
+/* Tarot Input State - special centered layout */
+.tool-state-input.tarot-centered {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--sp-8) var(--sp-4);
 }
 
 /* Result State - fullscreen result display */
@@ -761,18 +936,24 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
+  min-height: 100vh;
   padding: var(--sp-8) var(--sp-4);
   animation: fadeUp .5s ease both;
 }
 
 .result-panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--sp-6);
   text-align: center;
-  max-width: 480px;
+  max-width: 520px;
+  padding: var(--sp-5);
+  background: linear-gradient(165deg, rgba(18,12,8,.84), rgba(9,6,4,.95));
+  border: 1px solid rgba(138,106,184,.30);
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(92,52,158,.30), 0 18px 28px rgba(0,0,0,.57);
 }
 
 .result-back {
@@ -1028,19 +1209,35 @@ body::after {
   display:block; width:190px; margin:12px auto 0;
   font-family:'Cinzel',serif; font-weight:700; font-size: calc(12px * var(--fs-scale));
   letter-spacing:.20em; text-transform:uppercase; color:#e4d5ff;
-  background:linear-gradient(155deg,rgba(100,65,165,.65) 0%,rgba(58,36,108,.88) 100%);
-  border:1px solid rgba(138,106,184,.48); border-top:1px solid rgba(200,170,255,.28);
+  background:linear-gradient(155deg,rgba(100,65,165,.70) 0%,rgba(58,36,108,.92) 100%);
+  border:1px solid rgba(138,106,184,.58); border-top:1px solid rgba(200,170,255,.35);
   padding:10px 0; cursor:pointer; border-radius:var(--radius);
-  box-shadow:0 0 22px rgba(138,106,184,.18),0 5px 14px rgba(0,0,0,.58);
+  box-shadow:0 0 28px rgba(138,106,184,.26),0 6px 16px rgba(0,0,0,.60);
   transition:all .18s ease; position:relative; z-index:2;
 }
+.draw-btn::after {
+  content:''; position:absolute; inset:0; border-radius:var(--radius);
+  box-shadow:0 0 12px rgba(190,150,255,.35), inset 0 0 8px rgba(190,150,255,.20);
+  opacity:0; transition: opacity .22s ease;
+  pointer-events:none;
+}
 .draw-btn:hover {
-  background:linear-gradient(155deg,rgba(128,88,205,.75) 0%,rgba(78,50,148,.95) 100%);
-  box-shadow:0 0 44px rgba(160,120,255,.38),0 5px 16px rgba(0,0,0,.58);
+  background:linear-gradient(155deg,rgba(148,98,215,.82) 0%,rgba(98,60,166,.98) 100%);
+  box-shadow:0 0 56px rgba(180,130,255,.45),0 6px 18px rgba(0,0,0,.60);
   transform:translateY(-2px);
 }
+.draw-btn:hover::after { opacity:.7; }
 .draw-btn:active  { transform:translateY(1px); }
 .draw-btn:disabled { opacity:.34; cursor:not-allowed; transform:none; }
+
+@keyframes arcanePulse {
+  0%,100% { transform:scale(1); box-shadow:0 0 30px rgba(200,150,255,.22),0 0 16px rgba(89,62,148,.25); }
+  50% { transform:scale(1.03); box-shadow:0 0 44px rgba(210,170,255,.35),0 0 20px rgba(110,80,168,.33); }
+}
+
+.draw-btn.pulse {
+  animation: arcanePulse .8s ease-in-out;
+}
 
 /* Reading panel */
 .tarot-reading-panel {
