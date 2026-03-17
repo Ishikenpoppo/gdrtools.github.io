@@ -943,7 +943,7 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--nav-h));
   padding: var(--sp-8) var(--sp-4);
   animation: fadeUp .5s ease both;
 }
@@ -2761,7 +2761,18 @@ body::after {
   #page-notes,
   #page-initiative,
   #page-encounter,
-  #page-npc { flex-direction:row !important; }
+  #page-npc { flex-direction:row !important; overflow:hidden; }
+  /* Revert tool-state-input to row for two-column landscape layout */
+  #page-notes .tool-state-input,
+  #page-initiative .tool-state-input,
+  #page-encounter .tool-state-input,
+  #page-npc .tool-state-input {
+    flex-direction: row !important;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: 100%;
+    overflow: hidden;
+  }
   .notes-list-panel { width:180px; max-height:none; height:100%; border-right:1px solid var(--b-panel); border-bottom:none; }
   .enc-config-panel,
   .init-add-panel,
@@ -2818,7 +2829,8 @@ body::after {
 
 /* ─ Responsive ─ */
 @media (max-width:720px) {
-  #page-npc { flex-direction:column !important; }
+  #page-npc { flex-direction:column !important; overflow-y:auto; }
+  #page-npc .tool-state-input { flex-direction:column !important; align-items:stretch; justify-content:flex-start; height:calc(100vh - var(--nav-h)); overflow:hidden; }
   .npc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; overflow-y:auto; }
   .npc-card-grid { grid-template-columns:1fr; }
   .npc-portrait-card { grid-row:span 1; }
@@ -2834,21 +2846,49 @@ body::after {
   .home-sigil-wrap { width:140px; height:140px; }
 }
 @media (max-width:720px) {
-  #page-encounter { flex-direction:column !important; }
-  .enc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; }
-  #page-notes { flex-direction:column !important; }
+  /* Page-level overflow: allow result states to scroll */
+  #page-encounter { flex-direction:column !important; overflow-y:auto; }
+  #page-initiative { flex-direction:column !important; overflow-y:auto; }
+  #page-notes { flex-direction:column !important; overflow-y:auto; }
+
+  /* Fix: tool-state-input is flex-row by default — force column so panels stack */
+  #page-encounter .tool-state-input,
+  #page-initiative .tool-state-input,
+  #page-notes .tool-state-input {
+    flex-direction: column !important;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: calc(100vh - var(--nav-h));
+    overflow: hidden;
+  }
+
+  /* Config panels: full-width, capped height, scrollable */
+  .enc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; overflow-y:auto; }
   .notes-list-panel { width:100%; height:auto; max-height:40vh; border-right:none; border-bottom:1px solid var(--b-panel); overflow-y:auto; }
   .notes-work-area { flex:1; min-height:0; }
   .notes-toolbar .toolbar-hint { display:none; }
+
+  /* Home/Tarot (unchanged) */
   #page-home { flex-direction:column !important; }
   .home-hero-col { width:100%; border-right:none; border-bottom:1px solid var(--b-panel); padding:var(--sp-8) var(--sp-6) var(--sp-6); }
   .home-sigil-wrap { width:120px; height:120px; margin-bottom:var(--sp-5); }
   #page-tarot  { flex-direction:column !important; }
-  #page-initiative { flex-direction:column !important; }
   .tarot-card-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid rgba(138,106,184,.14); padding:var(--sp-6); }
-  .init-add-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; }
+  .init-add-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; overflow-y:auto; }
   .card-scene, .deck-stack { width:160px; height:272px; }
   .draw-btn { width:160px; }
+
+  /* Result state: scrollable, full-width panel */
+  .tool-state-result {
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: flex-start;
+    padding: var(--sp-6) var(--sp-3);
+  }
+  .result-panel {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 @media (max-width:460px) {
   /* Sidebar removed */
