@@ -848,6 +848,34 @@
     </div><!-- /npc-result-area -->
   </div><!-- /page-npc -->
 
+  <!-- ══════════════════ BOTTOM NAVIGATION BAR ══════════════════ -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="bottom-nav-item" data-page="encounter" onclick="navigate('encounter',this)" title="Encounter Generator">
+      <span class="bottom-nav-icon">📜</span>
+      <span class="bottom-nav-label">Encounter</span>
+    </button>
+    <button class="bottom-nav-item" data-page="dice" onclick="navigate('dice',this)" title="Dice Roller">
+      <span class="bottom-nav-icon">🎲</span>
+      <span class="bottom-nav-label">Dice</span>
+    </button>
+    <button class="bottom-nav-item" data-page="notes" onclick="navigate('notes',this)" title="Session Notes">
+      <span class="bottom-nav-icon">📝</span>
+      <span class="bottom-nav-label">Notes</span>
+    </button>
+    <button class="bottom-nav-item" data-page="initiative" onclick="navigate('initiative',this)" title="Combat Tracker">
+      <span class="bottom-nav-icon">⚔️</span>
+      <span class="bottom-nav-label">Combat</span>
+    </button>
+    <button class="bottom-nav-item" data-page="npc" onclick="navigate('npc',this)" title="NPC Forge">
+      <span class="bottom-nav-icon">🧙</span>
+      <span class="bottom-nav-label">NPC</span>
+    </button>
+    <button class="bottom-nav-item" data-page="tarot" onclick="navigate('tarot',this)" title="Tarot Oracle">
+      <span class="bottom-nav-icon">🃏</span>
+      <span class="bottom-nav-label">Tarot</span>
+    </button>
+  </nav>
+
 </main>
 
 <audio id="rollSound" src="u_qpfzpydtro-dice-142528.mp3" preload="auto" style="display:none;"></audio>
@@ -1556,12 +1584,20 @@ function navigate(pageId, navEl) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById('page-' + pageId);
   if (target) target.classList.add('active');
+  
+  // Update sidebar nav active state
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   if (navEl) navEl.classList.add('active');
   else {
     const m = document.querySelector(`.nav-item[data-page="${pageId}"]`);
     if (m) m.classList.add('active');
   }
+  
+  // Update bottom nav active state
+  document.querySelectorAll('.bottom-nav-item').forEach(n => n.classList.remove('active'));
+  const bottomItem = document.querySelector(`.bottom-nav-item[data-page="${pageId}"]`);
+  if (bottomItem) bottomItem.classList.add('active');
+  
   document.querySelector('.main').scrollTop = 0;
   
   // Close menu on mobile after navigation
