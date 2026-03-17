@@ -22,76 +22,6 @@
 <div class="bg-overlay"></div>
 <div class="torch-glow"></div>
 
-<!-- ══════════════════ HEADER MOBILE ══════════════════ -->
-<header class="app-header">
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="header-logo">
-    <span>📖</span>
-    <span class="logo-text">GRIMOIRE</span>
-  </div>
-  <div class="header-spacer"></div>
-</header>
-
-<!-- ══════════════════ SIDEBAR ══════════════════ -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <div class="sidebar-logo">
-      <span>📖</span>
-      <span class="logo-text">GRIMOIRE</span>
-    </div>
-    <div class="sidebar-subtitle">The GDR Toolkit</div>
-    <button class="close-menu" aria-label="Close navigation" onclick="toggleMenu()" style="display:none;">✕</button>
-  </div>
-  <nav class="sidebar-nav">
-    <div class="nav-section-label">Navigation</div>
-    <div class="nav-item active" data-page="home" onclick="navigate('home',this)">
-      <span class="nav-icon">🏰</span><span class="nav-label">Home</span>
-    </div>
-    
-    <div class="nav-divider"></div>
-    <div class="nav-section-label">Tools</div>
-    
-    <div class="nav-item" data-page="encounter" onclick="navigate('encounter',this)">
-      <span class="nav-icon">📜</span><span class="nav-label">Encounter Gen</span>
-    </div>
-    <div class="nav-item" data-page="npc" onclick="navigate('npc',this)">
-      <span class="nav-icon">🧙</span><span class="nav-label">NPC Forge</span>
-    </div>
-    <div class="nav-item" data-page="dice" onclick="navigate('dice',this)">
-      <span class="nav-icon">🎲</span><span class="nav-label">Dice Roller</span>
-    </div>
-    <div class="nav-item" data-page="initiative" onclick="navigate('initiative',this)">
-      <span class="nav-icon">⚔️</span><span class="nav-label">Combat Tracker</span>
-    </div>
-    <div class="nav-item" data-page="notes" onclick="navigate('notes',this)">
-      <span class="nav-icon">📝</span><span class="nav-label">Session Notes</span>
-    </div>
-    <div class="nav-item" data-page="tarot" onclick="navigate('tarot',this)">
-      <span class="nav-icon">🃏</span><span class="nav-label">Tarot Oracle</span>
-    </div>
-    
-    <div class="nav-divider"></div>
-    <div class="nav-section-label">Coming Soon</div>
-    <div class="nav-item locked" title="Coming soon">
-      <span class="nav-icon">🗺️</span><span class="nav-label">Loot Tables</span><span class="nav-badge">SOON</span>
-    </div>
-  </nav>
-  <div class="sidebar-footer">
-    <div class="sidebar-footer-text">✦ Roll with purpose ✦</div>
-    <div id="persistStatus" style="font-family:'IM Fell English',serif;font-style:italic;font-size:11.5px;text-align:center;margin-top:6px;line-height:1.5;opacity:.80;">
-      <span style="color:rgba(200,146,42,.40)">✦ Initialising…</span>
-    </div>
-    <button onclick="clearSession()" title="Wipe all saved data" style="display:block;width:100%;margin-top:8px;font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.10em;text-transform:uppercase;color:rgba(200,80,80,.55);background:transparent;border:1px solid rgba(200,80,80,.18);border-radius:2px;padding:5px 0;cursor:pointer;transition:all .15s;" onmouseover="this.style.color='rgba(220,100,100,.80)';this.style.borderColor='rgba(220,100,100,.40)'" onmouseout="this.style.color='rgba(200,80,80,.55)';this.style.borderColor='rgba(200,80,80,.18)'">
-      ✕ Clear Session
-    </button>
-  </div>
-</aside>
-
-<!-- ═════════ SIDEBAR OVERLAY (mobile) ═════════ -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
-
 <!-- ══════════════════ MAIN ══════════════════ -->
 <main class="main">
 
@@ -1542,7 +1472,7 @@ function clearSession() {
   navigate('home', null);
 }
 
-/* ── Persistence status widget in sidebar footer ── */
+/* ── Session persistence status ── */
 function updatePersistenceUI(status) {
   const el = document.getElementById('persistStatus');
   if (!el) return;
@@ -1568,16 +1498,7 @@ window.addEventListener('beforeunload', () => {
    ROUTER & NAVIGATION
 ════════════════════════════════════════════════════ */
 
-/* Toggle sidebar on mobile */
-function toggleMenu() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const toggle = document.getElementById('menuToggle');
-  
-  sidebar.classList.toggle('active');
-  overlay.classList.toggle('active');
-  toggle.classList.toggle('active');
-}
+/* Navigation sidebar removed in favor of bottom navigation bar */
 
 /* Close menu when navigating */
 function navigate(pageId, navEl) {
@@ -1585,30 +1506,12 @@ function navigate(pageId, navEl) {
   const target = document.getElementById('page-' + pageId);
   if (target) target.classList.add('active');
   
-  // Update sidebar nav active state
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  if (navEl) navEl.classList.add('active');
-  else {
-    const m = document.querySelector(`.nav-item[data-page="${pageId}"]`);
-    if (m) m.classList.add('active');
-  }
-  
   // Update bottom nav active state
   document.querySelectorAll('.bottom-nav-item').forEach(n => n.classList.remove('active'));
   const bottomItem = document.querySelector(`.bottom-nav-item[data-page="${pageId}"]`);
   if (bottomItem) bottomItem.classList.add('active');
   
   document.querySelector('.main').scrollTop = 0;
-  
-  // Close menu on mobile after navigation
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const toggle = document.getElementById('menuToggle');
-  if (window.innerWidth < 768) {
-    sidebar.classList.remove('active');
-    overlay.classList.remove('active');
-    toggle.classList.remove('active');
-  }
   
   scheduleSave();
 }
