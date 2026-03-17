@@ -2277,6 +2277,10 @@ body::after {
 .npc-card-grid.single-col {
   grid-template-columns:1fr;
 }
+/* Portrait + appearance two-column row */
+.npc-portrait-row {
+  display:grid; grid-template-columns:180px 1fr; gap:12px; margin-bottom:12px;
+}
 .npc-card {
   background:linear-gradient(155deg,rgba(18,13,6,.90) 0%,rgba(12,9,3,.95) 100%);
   border:1px solid var(--b-gold); border-radius:var(--radius);
@@ -2753,6 +2757,8 @@ body::after {
   .init-add-panel,
   .npc-config-panel { max-height:35vh; }
   .notes-list-panel { max-height:32vh; }
+  .dice-selector-col { height:38vh; }
+  .dice-cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ───── LANDSCAPE MODE ───── */
@@ -2762,6 +2768,12 @@ body::after {
   #page-initiative,
   #page-encounter,
   #page-npc { flex-direction:row !important; overflow:hidden; }
+  /* Dice roller: revert to side-by-side in landscape */
+  #page-dice { flex-direction:row !important; overflow:hidden; }
+  #page-dice .tool-state-input { flex-direction:row !important; height:calc(100vh - var(--nav-h)); overflow:hidden; }
+  .dice-selector-col { width:var(--panel-w); height:100%; border-right:1px solid var(--b-panel); border-bottom:none; max-height:none; flex-shrink:0; }
+  .dice-cards-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
+  .dice-results-col { height:100%; }
   /* Revert tool-state-input to row for two-column landscape layout */
   #page-notes .tool-state-input,
   #page-initiative .tool-state-input,
@@ -2832,8 +2844,10 @@ body::after {
   #page-npc { flex-direction:column !important; overflow-y:auto; }
   #page-npc .tool-state-input { flex-direction:column !important; align-items:stretch; justify-content:flex-start; height:calc(100vh - var(--nav-h)); overflow:hidden; }
   .npc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; overflow-y:auto; }
-  .npc-card-grid { grid-template-columns:1fr; }
+  .npc-card-grid { grid-template-columns:1fr !important; }
+  .npc-portrait-row { grid-template-columns:1fr !important; }
   .npc-portrait-card { grid-row:span 1; }
+  .npc-result-area { min-height:0; overflow-y:auto; }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -2889,6 +2903,33 @@ body::after {
     width: 100%;
     max-width: 100%;
   }
+
+  /* ── Dice Roller: stack columns vertically ── */
+  #page-dice { flex-direction:column !important; overflow-y:auto; }
+  #page-dice .tool-state-input {
+    flex-direction: column !important;
+    align-items: stretch;
+    height: calc(100vh - var(--nav-h));
+    overflow: hidden;
+  }
+  .dice-selector-col {
+    width: 100%; height: 44vh;
+    border-right: none; border-bottom: 1px solid var(--b-panel);
+    flex-shrink: 0;
+  }
+  .dice-cards-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .dice-results-col { flex: 1; height: auto; min-height: 0; overflow: hidden; }
+  .dice-total-zone { padding: var(--sp-4) var(--sp-3) var(--sp-2); }
+  .total-number { font-size: clamp(42px, 10vw, 70px) !important; }
+
+  /* ── Notes topbar: wrap & compact on narrow screens ── */
+  .notes-topbar { flex-wrap: wrap; padding: var(--sp-2) var(--sp-3); gap: 4px; }
+  .note-date-badge { display: none; }
+  .note-title-input { width: 100%; font-size: calc(14px * var(--fs-scale)); }
+
+  /* ── Encounter & Initiative: ensure flex children respect height constraints ── */
+  .enc-results-area { min-height: 0; }
+  .init-main { min-height: 0; }
 }
 @media (max-width:460px) {
   /* Sidebar removed */
