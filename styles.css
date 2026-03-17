@@ -52,6 +52,8 @@
   
   /* Header height */
   --header-h: 0px;
+  /* Bottom nav height */
+  --nav-h: 56px;
 }
 
 /* ─── Reset ────────────────────────────────────── */
@@ -120,7 +122,7 @@ body::after {
 ═══════════════════════════════════════════════════ */
 .main {
   position:relative; z-index:10;
-  flex:1; height:auto; min-height:0; overflow-y:auto; overflow-x:hidden; padding-bottom:56px;
+  flex:1; height:auto; min-height:0; overflow-y:auto; overflow-x:hidden; padding-bottom:var(--nav-h);
 }
 .page { display:none; }
 .page.active {
@@ -708,7 +710,7 @@ body::after {
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--nav-h));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1341,7 +1343,7 @@ body::after {
 ═══════════════════════════════════════════════════ */
 #page-notes {
   flex-direction:row !important; padding:0 !important;
-  height:100vh; overflow:hidden; align-items:stretch !important;
+  height:calc(100vh - var(--nav-h)); overflow:hidden; align-items:stretch !important;
 }
 .notes-list-panel {
   width:var(--panel-w); flex-shrink:0; display:flex; flex-direction:column;
@@ -1405,7 +1407,7 @@ body::after {
   font-size: calc(14px * var(--fs-scale)); color:var(--text-lo); opacity:.45; line-height:1.7;
 }
 .notes-work-area {
-  flex:1; display:flex; flex-direction:column; height:100%; overflow:hidden;
+  flex:1; display:flex; flex-direction:column; min-height:0; overflow:hidden;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .notes-topbar {
@@ -1524,7 +1526,7 @@ body::after {
 ═══════════════════════════════════════════════════ */
 #page-initiative {
   flex-direction:row !important; align-items:stretch !important;
-  padding:0 !important; height:100vh; overflow:hidden;
+  padding:0 !important; height:calc(100vh - var(--nav-h)); overflow:hidden;
 }
 .init-add-panel {
   width:var(--panel-w); flex-shrink:0; display:flex; flex-direction:column;
@@ -1636,7 +1638,7 @@ body::after {
 }
 /* Right: combat tracker */
 .init-main {
-  flex:1; display:flex; flex-direction:column; height:100%; overflow:hidden;
+  flex:1; display:flex; flex-direction:column; min-height:0; overflow:hidden;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .init-controls {
@@ -1809,7 +1811,7 @@ body::after {
 ═══════════════════════════════════════════════════ */
 #page-encounter {
   flex-direction:row !important; align-items:stretch !important;
-  padding:0 !important; height:100vh; overflow:hidden;
+  padding:0 !important; height:calc(100vh - var(--nav-h)); overflow:hidden;
 }
 .enc-config-panel {
   width:var(--panel-w); flex-shrink:0; display:flex; flex-direction:column;
@@ -1914,7 +1916,7 @@ body::after {
 
 /* ── Results area ── */
 .enc-results-area {
-  flex:1; display:flex; flex-direction:column; height:100%; overflow:hidden;
+  flex:1; display:flex; flex-direction:column; min-height:0; overflow:hidden;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .enc-results-header {
@@ -2121,7 +2123,7 @@ body::after {
 #page-npc {
   flex-direction:row !important;
   padding:0 !important;
-  height:100vh; overflow:hidden;
+  height:calc(100vh - var(--nav-h)); overflow:hidden;
   align-items:stretch !important;
 }
 
@@ -2220,7 +2222,7 @@ body::after {
 /* ─ Right result area ─ */
 .npc-result-area {
   flex:1; display:flex; flex-direction:column;
-  height:100%; overflow:hidden;
+  min-height:0; overflow:hidden;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 
@@ -2534,7 +2536,7 @@ body::after {
     flex: 1;
     height: auto;
     min-height: 0;
-    padding-bottom: 56px;
+    padding-bottom: var(--nav-h);
   }
   
   .bottom-nav {
@@ -2556,7 +2558,7 @@ body::after {
     flex: 1;
     height: auto;
     min-height: 0;
-    padding-bottom: 56px;
+    padding-bottom: var(--nav-h);
     overflow-y: auto;
   }
   
@@ -2745,9 +2747,25 @@ body::after {
   }
 }
 
+/* ───── SMALL PHONE ≤ 360px ───── */
+@media (max-width:360px) {
+  .enc-config-panel,
+  .init-add-panel,
+  .npc-config-panel { max-height:35vh; }
+  .notes-list-panel { max-height:32vh; }
+}
+
 /* ───── LANDSCAPE MODE ───── */
 @media (max-height: 600px) and (orientation: landscape) {
   /* Header and sidebar removed */
+  #page-notes,
+  #page-initiative,
+  #page-encounter,
+  #page-npc { flex-direction:row !important; }
+  .notes-list-panel { width:180px; max-height:none; height:100%; border-right:1px solid var(--b-panel); border-bottom:none; }
+  .enc-config-panel,
+  .init-add-panel,
+  .npc-config-panel { width:200px; max-height:none; height:100%; border-right:1px solid var(--b-panel); border-bottom:none; }
 }
 
 /* ─ Idle state ─ */
@@ -2801,7 +2819,7 @@ body::after {
 /* ─ Responsive ─ */
 @media (max-width:720px) {
   #page-npc { flex-direction:column !important; }
-  .npc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:50vh; }
+  .npc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; overflow-y:auto; }
   .npc-card-grid { grid-template-columns:1fr; }
   .npc-portrait-card { grid-row:span 1; }
 }
@@ -2817,8 +2835,10 @@ body::after {
 }
 @media (max-width:720px) {
   #page-encounter { flex-direction:column !important; }
-  .enc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:48vh; }
-  .notes-list-panel { width:200px; }
+  .enc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; }
+  #page-notes { flex-direction:column !important; }
+  .notes-list-panel { width:100%; height:auto; max-height:40vh; border-right:none; border-bottom:1px solid var(--b-panel); overflow-y:auto; }
+  .notes-work-area { flex:1; min-height:0; }
   .notes-toolbar .toolbar-hint { display:none; }
   #page-home { flex-direction:column !important; }
   .home-hero-col { width:100%; border-right:none; border-bottom:1px solid var(--b-panel); padding:var(--sp-8) var(--sp-6) var(--sp-6); }
@@ -2826,7 +2846,7 @@ body::after {
   #page-tarot  { flex-direction:column !important; }
   #page-initiative { flex-direction:column !important; }
   .tarot-card-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid rgba(138,106,184,.14); padding:var(--sp-6); }
-  .init-add-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:50vh; }
+  .init-add-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; }
   .card-scene, .deck-stack { width:160px; height:272px; }
   .draw-btn { width:160px; }
 }
