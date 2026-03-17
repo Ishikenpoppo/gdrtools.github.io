@@ -798,7 +798,12 @@ body::after {
   background-size: cover;
 }
 
-#page-tarot .tool-state-idle {
+#page-tarot .tool-state-idle,
+#page-dice .tool-state-idle,
+#page-notes .tool-state-idle,
+#page-initiative .tool-state-idle,
+#page-encounter .tool-state-idle,
+#page-npc .tool-state-idle {
   animation: tarotIdleFloat .9s ease-in-out infinite alternate;
 }
 
@@ -2609,6 +2614,16 @@ body::after {
   /* Optimize home page layout on mobile */
   .home-wrapper {
     padding: var(--sp-4) var(--sp-2);
+    gap: var(--sp-5);
+  }
+
+  .home-hero {
+    gap: var(--sp-2);
+  }
+
+  .home-sigil-wrap {
+    width: 70px;
+    height: 70px;
   }
   
   .home-title {
@@ -2619,23 +2634,43 @@ body::after {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--sp-3);
   }
+
+  /* Fix tool cards clipping on mobile: drop aspect-ratio, use compact padding */
+  .tool-card {
+    aspect-ratio: unset;
+    min-height: 100px;
+    padding: var(--sp-3) var(--sp-2);
+    gap: var(--sp-2);
   }
-  
+
+  .tool-card-icon {
+    font-size: calc(30px * var(--fs-scale));
+    height: 36px;
+  }
+
+  .tool-card-name {
+    font-size: calc(10px * var(--fs-scale));
+  }
+
+  .tool-card-desc {
+    font-size: calc(10px * var(--fs-scale));
+  }
+
   .tool-row-badge {
     font-size: calc(8px * var(--fs-scale));
     padding: 2px 5px;
   }
-  
+
   .home-lore-box {
     padding: var(--sp-4) var(--sp-4);
     margin-top: var(--sp-4);
   }
-  
+
   .home-lore-box p {
     font-size: calc(15px * var(--fs-scale));
     line-height: 1.75;
   }
-  
+
   .drop-cap {
     font-size: 2.2em;
   }
@@ -2644,9 +2679,38 @@ body::after {
 /* ───── SMALL MOBILE: Below 480px ───── */
 @media (max-width: 479px) {
   :root {
-    --sp-4: 14px;
-    --sp-5: 16px;
-    --sp-6: 18px;
+    --sp-4: 12px;
+    --sp-5: 14px;
+    --sp-6: 16px;
+  }
+
+  /* Even more compact cards on very small screens */
+  .tool-card {
+    min-height: 90px;
+    padding: var(--sp-2) var(--sp-2);
+    gap: 6px;
+  }
+
+  .tool-card-icon {
+    font-size: calc(26px * var(--fs-scale));
+    height: 30px;
+  }
+
+  .tool-card-name {
+    font-size: calc(9px * var(--fs-scale));
+  }
+
+  .tool-card-desc {
+    font-size: calc(9px * var(--fs-scale));
+  }
+
+  .home-sigil-wrap {
+    width: 60px;
+    height: 60px;
+  }
+
+  .home-wrapper {
+    gap: var(--sp-4);
   }
   
   .panel-header {

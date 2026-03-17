@@ -127,6 +127,8 @@
 
     <!-- ════ INPUT STATE ════ -->
     <div class="tool-state-input" id="diceStateInput">
+      <!-- Starfield -->
+      <div class="tarot-stars" id="diceStars"></div>
       <!-- ── Left: die selector ── -->
       <div class="dice-selector-col">
         <div class="dice-col-header">
@@ -337,6 +339,8 @@
 
     <!-- INPUT STATE (note editing) -->
     <div class="tool-state-input" id="notesStateInput">
+      <!-- Starfield -->
+      <div class="tarot-stars" id="notesStars"></div>
       <!-- Left: note list -->
       <div class="notes-list-panel">
         <div class="notes-list-header">
@@ -425,6 +429,8 @@
 
     <!-- INPUT STATE (active tracking) -->
     <div class="tool-state-input" id="initiativeStateInput">
+      <!-- Starfield -->
+      <div class="tarot-stars" id="initiativeStars"></div>
       <div class="init-add-panel">
         <div class="init-add-header">
           <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:12.5px;color:var(--ink-dim);opacity:.50;margin-bottom:8px;">
@@ -530,6 +536,8 @@
 
     <!-- INPUT STATE (configuration) -->
     <div class="tool-state-input" id="encounterStateInput">
+      <!-- Starfield -->
+      <div class="tarot-stars" id="encounterStars"></div>
       <!-- Left: configuration -->
       <div class="enc-config-panel">
         <div class="enc-config-header">
@@ -672,6 +680,8 @@
 
     <!-- INPUT STATE -->
     <div class="tool-state-input" id="npcStateInput">
+      <!-- Starfield -->
+      <div class="tarot-stars" id="npcStars"></div>
       <!-- Left: configuration -->
       <div class="npc-config-panel">
         <div class="npc-config-header">
@@ -1807,9 +1817,9 @@ let tarotDeck = [];
 let tarotLog  = [];
 let firstDraw = true;
 
-/* ── Build CSS starfield for tarot panel ── */
-function buildTarotStars() {
-  const wrap = document.getElementById('tarotStars');
+/* ── Build CSS starfield ── */
+function buildStars(id) {
+  const wrap = document.getElementById(id);
   if (!wrap) return;
   const count = 55;
   wrap.innerHTML = Array.from({length: count}, () => {
@@ -1823,7 +1833,12 @@ function buildTarotStars() {
     return `<div class="t-star" style="width:${size}px;height:${size}px;left:${x}%;top:${y}%;--lo:${lo};--hi:${hi};--d:${dur}s;--delay:${delay}s"></div>`;
   }).join('');
 }
-buildTarotStars();
+buildStars('tarotStars');
+buildStars('diceStars');
+buildStars('notesStars');
+buildStars('initiativeStars');
+buildStars('encounterStars');
+buildStars('npcStars');
 
 function shuffleDeck() {
   tarotDeck = [...TAROT].sort(() => Math.random() - 0.5);
