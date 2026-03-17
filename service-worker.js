@@ -5,8 +5,7 @@ const PRECACHE_URLS = [
   './manifest.webmanifest',
   './styles.css',
   './u_qpfzpydtro-dice-142528.mp3',
-  './icon.svg',
-  './icons/apple-touch-icon.png'
+  './icons/icon.svg'
 ];
 
 self.addEventListener('install', (event) => {
