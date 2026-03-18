@@ -129,6 +129,8 @@
     <div class="tool-state-input" id="diceStateInput">
       <!-- Starfield -->
       <div class="tarot-stars" id="diceStars"></div>
+      <!-- FAB: Roll button (mobile only, replaces inline button) -->
+      <button class="roll-btn-fab" onclick="rollDiceAndShowResult()">⚄ Roll</button>
       <!-- ── Left: die selector ── -->
       <div class="dice-selector-col">
         <div class="dice-col-header">
@@ -1623,23 +1625,33 @@ function switchToolState(toolName, newState) {
 }
 
 function rollDiceAndShowResult() {
-  // First roll the dice normally
-  rollDice();
-  
-  // Then copy results to result state
-  const diceTotal = document.getElementById('diceTotal');
-  const diceBreakdown = document.getElementById('diceBreakdown');
+  // Roll the dice and get the computed data directly
+  const data = rollDice();
+  if (!data) return;
+
+  const { total, results, dominant } = data;
+
+  // Populate result state directly from computed data (not from animated DOM)
   const resultTotal = document.getElementById('resultDiceTotal');
   const resultBreakdown = document.getElementById('resultDiceBreakdown');
-  
-  if (resultTotal && diceTotal) {
-    resultTotal.textContent = diceTotal.textContent;
+
+  if (resultTotal) {
+    resultTotal.textContent = total;
+    if (dominant?.color) {
+      resultTotal.style.color = dominant.color;
+      resultTotal.style.textShadow = `0 0 28px ${dominant.color}88, 0 0 65px ${dominant.color}44, 0 4px 14px rgba(0,0,0,.8)`;
+    }
   }
-  
-  if (resultBreakdown && diceBreakdown) {
-    resultBreakdown.innerHTML = diceBreakdown.innerHTML;
+
+  if (resultBreakdown) {
+    resultBreakdown.innerHTML = results.map((r, ri) => `
+      <div class="breakdown-chip"
+        style="color:${r.color};border-color:rgba(${r.rgb},.38);background:rgba(${r.rgb},.07);animation-delay:${ri*60}ms">
+        d${r.sides}×${r.count} = ${r.sub}
+      </div>
+    `).join('');
   }
-  
+
   // Switch to result state
   switchToolState('dice', 'result');
 }
@@ -2177,6 +2189,8 @@ function rollDice() {
   selectedLogIdx = rollHistory.length - 1;
   renderRollLog();
   scheduleSave();
+
+  return { total, results, dominant };
 }
 
 /* ── Total animation ── */
