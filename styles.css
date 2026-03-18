@@ -58,7 +58,8 @@
 
 /* ─── Reset ────────────────────────────────────── */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html, body { height:100%; overflow:hidden; }
+html { height:100%; }
+body { min-height:100%; overflow-x:hidden; }
 body {
   font-family: 'Crimson Text', Georgia, serif;
   font-size: calc(17px * var(--fs-scale)); line-height: 1.7;
@@ -138,7 +139,6 @@ body::after {
   display:flex; flex-direction:column;
   background: linear-gradient(175deg, #0e0b07 0%, #080502 100%);
   border-right: 1px solid var(--b-panel);
-  height:100%; overflow:hidden;
 }
 .panel-header {
   padding: var(--sp-6) var(--sp-5) var(--sp-4);
@@ -168,7 +168,6 @@ body::after {
 /* ─── Shared right-area pattern ─────────────────── */
 .area-right {
   flex:1; display:flex; flex-direction:column;
-  height:100%; overflow:hidden;
   background: linear-gradient(155deg, #100d08 0%, #080602 100%);
 }
 
@@ -449,7 +448,6 @@ body::after {
 #page-dice {
   flex-direction:row !important;
   padding:0 !important;
-  height:100vh; overflow:hidden;
   align-items:stretch !important;
 }
 .dice-selector-col {
@@ -457,7 +455,6 @@ body::after {
   display:flex; flex-direction:column;
   background:linear-gradient(175deg,#0e0b07 0%,#080502 100%);
   border-right:1px solid var(--b-panel);
-  height:100%; overflow:hidden;
 }
 .dice-col-header {
   padding:var(--sp-6) var(--sp-5) var(--sp-4);
@@ -477,7 +474,7 @@ body::after {
   font-family:'IM Fell English',serif; font-style:italic;
   font-size: calc(12.5px * var(--fs-scale)); color:var(--text-lo); opacity:.50;
 }
-.dice-cards-scroll { flex:1; overflow-y:auto; padding:var(--sp-4) var(--sp-3); }
+.dice-cards-scroll { padding:var(--sp-4) var(--sp-3); }
 .dice-cards-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
 
 /* Die card */
@@ -599,7 +596,7 @@ body::after {
 
 /* Results column */
 .dice-results-col {
-  flex:1; display:flex; flex-direction:column; height:100%; overflow:hidden;
+  flex:1; display:flex; flex-direction:column;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .dice-total-zone {
@@ -666,7 +663,7 @@ body::after {
 .dice-log-btn.green:hover { background:rgba(80,160,80,.07); border-color:rgba(80,160,80,.45); }
 .dice-log-btn.red { color:rgba(200,80,80,.70); border-color:rgba(160,60,60,.22); }
 .dice-log-btn.red:hover { background:rgba(160,60,60,.07); border-color:rgba(160,60,60,.45); }
-.dice-log-scroll { flex:1; overflow-y:auto; padding:var(--sp-1) 0 var(--sp-4); }
+.dice-log-scroll { padding:var(--sp-1) 0 var(--sp-4); }
 .log-roll-entry {
   display:flex; align-items:baseline; gap:var(--sp-2);
   padding: var(--sp-2) var(--sp-5);
@@ -708,7 +705,6 @@ body::after {
 .tool-state-input,
 .tool-state-result {
   position: relative;
-  overflow: hidden;
   width: 100%;
   min-height: calc(100vh - var(--nav-h));
   display: flex;
@@ -1248,7 +1244,7 @@ body::after {
 
 /* Reading panel */
 .tarot-reading-panel {
-  flex:1; display:flex; flex-direction:column; height:100%; overflow:hidden;
+  flex:1; display:flex; flex-direction:column;
   background:linear-gradient(160deg,#0e0920 0%,#070413 100%);
 }
 .reading-header {
@@ -1289,7 +1285,7 @@ body::after {
   padding:3px 9px; border-radius:2px; background:rgba(220,100,100,.06);
 }
 .reading-body {
-  flex:1; overflow-y:auto; padding:var(--sp-6) var(--sp-8);
+  padding:var(--sp-6) var(--sp-8);
 }
 .reading-section { margin-bottom:var(--sp-5); }
 .reading-section-label {
@@ -1343,12 +1339,12 @@ body::after {
 ═══════════════════════════════════════════════════ */
 #page-notes {
   flex-direction:row !important; padding:0 !important;
-  height:calc(100vh - var(--nav-h)); overflow:hidden; align-items:stretch !important;
+  align-items:stretch !important;
 }
 .notes-list-panel {
   width:var(--panel-w); flex-shrink:0; display:flex; flex-direction:column;
   background:linear-gradient(175deg,#0e0b07 0%,#080502 100%);
-  border-right:1px solid var(--b-panel); height:100%; overflow:hidden;
+  border-right:1px solid var(--b-panel);
 }
 .notes-list-header {
   padding:var(--sp-6) var(--sp-4) var(--sp-4);
@@ -1376,7 +1372,7 @@ body::after {
 }
 .new-note-btn:active { transform:translateY(1px); }
 .new-note-btn .btn-icon { font-size: calc(15px * var(--fs-scale)); }
-.notes-list-scroll { flex:1; overflow-y:auto; padding:var(--sp-2) 0; }
+.notes-list-scroll { padding:var(--sp-2) 0; }
 .note-item {
   padding:var(--sp-3) var(--sp-4); cursor:pointer;
   border-right:2px solid transparent; border-bottom:1px solid var(--b-subtle);
@@ -1407,7 +1403,8 @@ body::after {
   font-size: calc(14px * var(--fs-scale)); color:var(--text-lo); opacity:.45; line-height:1.7;
 }
 .notes-work-area {
-  flex:1; display:flex; flex-direction:column; min-height:0; overflow:hidden;
+  flex:1; display:flex; flex-direction:column;
+  min-height:calc(100vh - var(--nav-h));
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .notes-topbar {
@@ -1468,7 +1465,7 @@ body::after {
   font-family:'IM Fell English',serif; font-style:italic;
   font-size: calc(11px * var(--fs-scale)); color:var(--text-lo); opacity:.35; margin-left:auto; white-space:nowrap;
 }
-.notes-editor-wrap { flex:1; position:relative; overflow:hidden; }
+.notes-editor-wrap { flex:1; position:relative; min-height:360px; }
 .notes-textarea {
   position:absolute; inset:0; width:100%; height:100%;
   background:transparent; border:none; outline:none; resize:none;
@@ -1526,12 +1523,12 @@ body::after {
 ═══════════════════════════════════════════════════ */
 #page-initiative {
   flex-direction:row !important; align-items:stretch !important;
-  padding:0 !important; height:calc(100vh - var(--nav-h)); overflow:hidden;
+  padding:0 !important;
 }
 .init-add-panel {
   width:var(--panel-w); flex-shrink:0; display:flex; flex-direction:column;
   background:linear-gradient(175deg,#0e0b07 0%,#080502 100%);
-  border-right:1px solid var(--b-panel); height:100%; overflow:hidden;
+  border-right:1px solid var(--b-panel);
 }
 .init-add-header {
   padding:var(--sp-6) var(--sp-5) var(--sp-4);
@@ -1546,7 +1543,7 @@ body::after {
   font-family:'IM Fell English',serif; font-style:italic;
   font-size: calc(12.5px * var(--fs-scale)); color:var(--text-lo); opacity:.50;
 }
-.init-add-body { flex:1; overflow-y:auto; padding:var(--sp-4) var(--sp-5); }
+.init-add-body { padding:var(--sp-4) var(--sp-5); }
 .init-field { margin-bottom:var(--sp-3); }
 .init-field-label {
   font-family:'Cinzel',serif; font-size: calc(10px * var(--fs-scale)); letter-spacing:.18em;
@@ -1638,7 +1635,8 @@ body::after {
 }
 /* Right: combat tracker */
 .init-main {
-  flex:1; display:flex; flex-direction:column; min-height:0; overflow:hidden;
+  flex:1; display:flex; flex-direction:column;
+  min-height:calc(100vh - var(--nav-h));
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .init-controls {
@@ -1682,7 +1680,7 @@ body::after {
   border-color:rgba(160,60,60,.20); margin-left:auto;
 }
 .init-ctrl-btn.clear-combat:hover { background:rgba(160,60,60,.10); border-color:rgba(160,60,60,.48); }
-.init-list-scroll { flex:1; overflow-y:auto; padding:var(--sp-3) var(--sp-4); }
+.init-list-scroll { padding:var(--sp-3) var(--sp-4); }
 .init-empty {
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   height:100%; text-align:center; padding:var(--sp-10);
@@ -1811,12 +1809,12 @@ body::after {
 ═══════════════════════════════════════════════════ */
 #page-encounter {
   flex-direction:row !important; align-items:stretch !important;
-  padding:0 !important; height:calc(100vh - var(--nav-h)); overflow:hidden;
+  padding:0 !important;
 }
 .enc-config-panel {
   width:var(--panel-w); flex-shrink:0; display:flex; flex-direction:column;
   background:linear-gradient(175deg,#0e0b07 0%,#080502 100%);
-  border-right:1px solid var(--b-panel); height:100%; overflow:hidden;
+  border-right:1px solid var(--b-panel);
 }
 .enc-config-header {
   padding:var(--sp-6) var(--sp-5) var(--sp-4);
@@ -1831,7 +1829,7 @@ body::after {
   font-family:'IM Fell English',serif; font-style:italic;
   font-size: calc(12.5px * var(--fs-scale)); color:var(--text-lo); opacity:.50;
 }
-.enc-config-body { flex:1; overflow-y:auto; padding:var(--sp-4) var(--sp-5); }
+.enc-config-body { padding:var(--sp-4) var(--sp-5); }
 
 /* Stepper controls */
 .enc-stepper {
@@ -1916,7 +1914,8 @@ body::after {
 
 /* ── Results area ── */
 .enc-results-area {
-  flex:1; display:flex; flex-direction:column; min-height:0; overflow:hidden;
+  flex:1; display:flex; flex-direction:column;
+  min-height:calc(100vh - var(--nav-h));
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .enc-results-header {
@@ -1972,7 +1971,7 @@ body::after {
 }
 
 /* Monster cards */
-.enc-monster-scroll { flex:1; overflow-y:auto; padding:var(--sp-4) var(--sp-6); }
+.enc-monster-scroll { padding:var(--sp-4) var(--sp-6); }
 .enc-monster-grid { display:flex; flex-direction:column; gap:8px; }
 .enc-monster-card {
   display:flex; align-items:center; gap:var(--sp-3);
@@ -2123,7 +2122,6 @@ body::after {
 #page-npc {
   flex-direction:row !important;
   padding:0 !important;
-  height:calc(100vh - var(--nav-h)); overflow:hidden;
   align-items:stretch !important;
 }
 
@@ -2133,7 +2131,6 @@ body::after {
   display:flex; flex-direction:column;
   background:linear-gradient(175deg,#0e0b07 0%,#080502 100%);
   border-right:1px solid var(--b-panel);
-  height:100%; overflow:hidden;
 }
 .npc-config-header {
   padding:var(--sp-6) var(--sp-5) var(--sp-4);
@@ -2151,7 +2148,7 @@ body::after {
   font-size: calc(12.5px * var(--fs-scale)); color:var(--text-lo); opacity:.50;
 }
 .npc-config-body {
-  flex:1; overflow-y:auto; padding:var(--sp-4) var(--sp-5);
+  padding:var(--sp-4) var(--sp-5);
 }
 
 /* ─ Config field ─ */
@@ -2222,7 +2219,7 @@ body::after {
 /* ─ Right result area ─ */
 .npc-result-area {
   flex:1; display:flex; flex-direction:column;
-  min-height:0; overflow:hidden;
+  min-height:calc(100vh - var(--nav-h));
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 
@@ -2266,7 +2263,7 @@ body::after {
 
 /* ─ Result scroll ─ */
 .npc-result-scroll {
-  flex:1; overflow-y:auto; padding:var(--sp-6) var(--sp-8);
+  padding:var(--sp-6) var(--sp-8);
 }
 
 /* ─ NPC card grid ─ */
@@ -2753,11 +2750,6 @@ body::after {
 
 /* ───── SMALL PHONE ≤ 360px ───── */
 @media (max-width:360px) {
-  .enc-config-panel,
-  .init-add-panel,
-  .npc-config-panel { max-height:35vh; }
-  .notes-list-panel { max-height:32vh; }
-  .dice-selector-col { height:38vh; }
   .dice-cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -2767,13 +2759,12 @@ body::after {
   #page-notes,
   #page-initiative,
   #page-encounter,
-  #page-npc { flex-direction:row !important; overflow:hidden; }
+  #page-npc { flex-direction:row !important; }
   /* Dice roller: revert to side-by-side in landscape */
-  #page-dice { flex-direction:row !important; overflow:hidden; }
-  #page-dice .tool-state-input { flex-direction:row !important; height:calc(100vh - var(--nav-h)); overflow:hidden; }
-  .dice-selector-col { width:var(--panel-w); height:100%; border-right:1px solid var(--b-panel); border-bottom:none; max-height:none; flex-shrink:0; }
+  #page-dice { flex-direction:row !important; }
+  #page-dice .tool-state-input { flex-direction:row !important; }
+  .dice-selector-col { width:var(--panel-w); border-right:1px solid var(--b-panel); border-bottom:none; max-height:none; flex-shrink:0; }
   .dice-cards-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
-  .dice-results-col { height:100%; }
   /* Revert tool-state-input to row for two-column landscape layout */
   #page-notes .tool-state-input,
   #page-initiative .tool-state-input,
@@ -2782,13 +2773,11 @@ body::after {
     flex-direction: row !important;
     align-items: stretch;
     justify-content: flex-start;
-    height: 100%;
-    overflow: hidden;
   }
-  .notes-list-panel { width:180px; max-height:none; height:100%; border-right:1px solid var(--b-panel); border-bottom:none; }
+  .notes-list-panel { width:180px; max-height:none; border-right:1px solid var(--b-panel); border-bottom:none; }
   .enc-config-panel,
   .init-add-panel,
-  .npc-config-panel { width:200px; max-height:none; height:100%; border-right:1px solid var(--b-panel); border-bottom:none; }
+  .npc-config-panel { width:200px; max-height:none; border-right:1px solid var(--b-panel); border-bottom:none; }
 }
 
 /* ─ Idle state ─ */
@@ -2841,13 +2830,13 @@ body::after {
 
 /* ─ Responsive ─ */
 @media (max-width:720px) {
-  #page-npc { flex-direction:column !important; overflow-y:auto; }
-  #page-npc .tool-state-input { flex-direction:column !important; align-items:stretch; justify-content:flex-start; height:calc(100vh - var(--nav-h)); overflow:hidden; }
-  .npc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; overflow-y:auto; }
+  #page-npc { flex-direction:column !important; }
+  #page-npc .tool-state-input { flex-direction:column !important; align-items:stretch; justify-content:flex-start; }
+  .npc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); }
   .npc-card-grid { grid-template-columns:1fr !important; }
   .npc-portrait-row { grid-template-columns:1fr !important; }
   .npc-portrait-card { grid-row:span 1; }
-  .npc-result-area { min-height:0; overflow-y:auto; }
+  .npc-result-area { flex:1; }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -2860,26 +2849,24 @@ body::after {
   .home-sigil-wrap { width:140px; height:140px; }
 }
 @media (max-width:720px) {
-  /* Page-level overflow: allow result states to scroll */
-  #page-encounter { flex-direction:column !important; overflow-y:auto; }
-  #page-initiative { flex-direction:column !important; overflow-y:auto; }
-  #page-notes { flex-direction:column !important; overflow-y:auto; }
+  /* Page-level: stack panels vertically on mobile */
+  #page-encounter { flex-direction:column !important; }
+  #page-initiative { flex-direction:column !important; }
+  #page-notes { flex-direction:column !important; }
 
-  /* Fix: tool-state-input is flex-row by default — force column so panels stack */
+  /* tool-state-input: force column so panels stack */
   #page-encounter .tool-state-input,
   #page-initiative .tool-state-input,
   #page-notes .tool-state-input {
     flex-direction: column !important;
     align-items: stretch;
     justify-content: flex-start;
-    height: calc(100vh - var(--nav-h));
-    overflow: hidden;
   }
 
-  /* Config panels: full-width, capped height, scrollable */
-  .enc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; overflow-y:auto; }
-  .notes-list-panel { width:100%; height:auto; max-height:40vh; border-right:none; border-bottom:1px solid var(--b-panel); overflow-y:auto; }
-  .notes-work-area { flex:1; min-height:0; }
+  /* Config panels: full-width, natural height */
+  .enc-config-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); }
+  .notes-list-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); }
+  .notes-work-area { flex:1; }
   .notes-toolbar .toolbar-hint { display:none; }
 
   /* Home/Tarot (unchanged) */
@@ -2888,7 +2875,7 @@ body::after {
   .home-sigil-wrap { width:120px; height:120px; margin-bottom:var(--sp-5); }
   #page-tarot  { flex-direction:column !important; }
   .tarot-card-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid rgba(138,106,184,.14); padding:var(--sp-6); }
-  .init-add-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); max-height:40vh; overflow-y:auto; }
+  .init-add-panel { width:100%; height:auto; border-right:none; border-bottom:1px solid var(--b-panel); }
   .card-scene, .deck-stack { width:160px; height:272px; }
   .draw-btn { width:160px; }
 
@@ -2905,20 +2892,17 @@ body::after {
   }
 
   /* ── Dice Roller: stack columns vertically ── */
-  #page-dice { flex-direction:column !important; overflow-y:auto; }
+  #page-dice { flex-direction:column !important; }
   #page-dice .tool-state-input {
     flex-direction: column !important;
     align-items: stretch;
-    height: calc(100vh - var(--nav-h));
-    overflow: hidden;
   }
   .dice-selector-col {
-    width: 100%; height: 44vh;
+    width: 100%;
     border-right: none; border-bottom: 1px solid var(--b-panel);
     flex-shrink: 0;
   }
   .dice-cards-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .dice-results-col { flex: 1; height: auto; min-height: 0; overflow: hidden; }
   .dice-total-zone { padding: var(--sp-4) var(--sp-3) var(--sp-2); }
   .total-number { font-size: clamp(42px, 10vw, 70px) !important; }
 
@@ -2926,11 +2910,95 @@ body::after {
   .notes-topbar { flex-wrap: wrap; padding: var(--sp-2) var(--sp-3); gap: 4px; }
   .note-date-badge { display: none; }
   .note-title-input { width: 100%; font-size: calc(14px * var(--fs-scale)); }
-
-  /* ── Encounter & Initiative: ensure flex children respect height constraints ── */
-  .enc-results-area { min-height: 0; }
-  .init-main { min-height: 0; }
 }
 @media (max-width:460px) {
   /* Sidebar removed */
+}
+
+/* ═══════════════════════════════════════════════════
+   FLOATING ACTION BUTTONS (mobile)
+   position:fixed hides with parent display:none,
+   so each FAB only appears on its own tool page.
+═══════════════════════════════════════════════════ */
+@media (max-width:767px) {
+
+  /* ── Dice Roller: Roll button ── */
+  #diceStateInput .dice-roll-wrap {
+    /* Hide the inline wrap on mobile — the FAB takes over */
+    display: none;
+  }
+  #diceStateInput .roll-btn-fab {
+    display: flex;
+  }
+  .roll-btn-fab {
+    display: none; /* shown only inside active dice state on mobile */
+    position: fixed;
+    bottom: calc(var(--nav-h) + 14px);
+    right: 16px;
+    z-index: 88;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px;
+    border-radius: 28px;
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: calc(13px * var(--fs-scale));
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #0a0600;
+    background: linear-gradient(155deg,#f0a830 0%,#c87018 48%,#9e4e10 100%);
+    border: none;
+    border-top: 1px solid rgba(255,220,120,.48);
+    border-bottom: 1px solid rgba(0,0,0,.50);
+    box-shadow: 0 4px 20px rgba(0,0,0,.55), 0 0 30px rgba(200,100,20,.40);
+    cursor: pointer;
+    transition: all .16s ease;
+  }
+  .roll-btn-fab:hover {
+    background: linear-gradient(155deg,#f9c250 0%,#e0902e 48%,#b35d1a 100%);
+    box-shadow: 0 4px 24px rgba(0,0,0,.55), 0 0 50px rgba(240,160,20,.55);
+    transform: translateY(-2px);
+  }
+  .roll-btn-fab:active { transform: translateY(1px); }
+  .roll-btn-fab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    background: linear-gradient(180deg,rgba(255,255,255,.22) 0%,transparent 55%);
+    pointer-events: none;
+  }
+
+  /* ── Initiative: Next Turn button ── */
+  .init-ctrl-btn.next {
+    position: fixed;
+    bottom: calc(var(--nav-h) + 14px);
+    right: 16px;
+    z-index: 88;
+    border-radius: 28px;
+    padding: 14px 24px;
+    font-size: calc(13px * var(--fs-scale));
+    box-shadow: 0 4px 20px rgba(0,0,0,.55), 0 0 28px rgba(200,100,20,.38);
+  }
+  .init-ctrl-btn.next:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,.55), 0 0 48px rgba(240,140,20,.52);
+    transform: translateY(-2px);
+  }
+
+  /* ── Session Notes: New Note button ── */
+  #notesStateInput .notes-list-header .new-note-btn {
+    position: fixed;
+    bottom: calc(var(--nav-h) + 14px);
+    right: 16px;
+    z-index: 88;
+    width: auto;
+    border-radius: 28px;
+    padding: 12px 20px;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.55), 0 0 28px rgba(200,100,20,.35);
+  }
+  #notesStateInput .notes-list-header .new-note-btn:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,.55), 0 0 44px rgba(240,140,20,.48);
+    transform: translateY(-2px);
+  }
 }
