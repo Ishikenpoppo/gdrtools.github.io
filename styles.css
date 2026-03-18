@@ -1404,7 +1404,7 @@ body::after {
 }
 .notes-work-area {
   flex:1; display:flex; flex-direction:column;
-  min-height:calc(100vh - var(--nav-h));
+  min-height:400px;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .notes-topbar {
@@ -1636,7 +1636,7 @@ body::after {
 /* Right: combat tracker */
 .init-main {
   flex:1; display:flex; flex-direction:column;
-  min-height:calc(100vh - var(--nav-h));
+  min-height:400px;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .init-controls {
@@ -1915,7 +1915,7 @@ body::after {
 /* ── Results area ── */
 .enc-results-area {
   flex:1; display:flex; flex-direction:column;
-  min-height:calc(100vh - var(--nav-h));
+  min-height:400px;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 .enc-results-header {
@@ -2219,7 +2219,7 @@ body::after {
 /* ─ Right result area ─ */
 .npc-result-area {
   flex:1; display:flex; flex-direction:column;
-  min-height:calc(100vh - var(--nav-h));
+  min-height:400px;
   background:linear-gradient(155deg,#100d08 0%,#080602 100%);
 }
 
@@ -2930,6 +2930,10 @@ body::after {
   #diceStateInput .roll-btn-fab {
     display: flex;
   }
+  /* Add padding so log entries don't hide behind the FAB */
+  .dice-log-scroll {
+    padding-bottom: calc(var(--nav-h) + 80px);
+  }
   .roll-btn-fab {
     display: none; /* shown only inside active dice state on mobile */
     position: fixed;
@@ -2988,17 +2992,23 @@ body::after {
   /* ── Session Notes: New Note button ── */
   #notesStateInput .notes-list-header .new-note-btn {
     position: fixed;
-    bottom: calc(var(--nav-h) + 14px);
-    right: 16px;
+    bottom: calc(var(--nav-h) + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
     z-index: 88;
     width: auto;
     border-radius: 28px;
-    padding: 12px 20px;
+    padding: 13px 28px;
     gap: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,.55), 0 0 28px rgba(200,100,20,.35);
   }
   #notesStateInput .notes-list-header .new-note-btn:hover {
     box-shadow: 0 4px 24px rgba(0,0,0,.55), 0 0 44px rgba(240,140,20,.48);
-    transform: translateY(-2px);
+    transform: translateX(-50%) translateY(-2px);
+  }
+  /* Padding so notes list doesn't hide behind the FAB */
+  .notes-list-scroll {
+    padding-bottom: calc(var(--nav-h) + 80px);
   }
 }
