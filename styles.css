@@ -2920,6 +2920,10 @@ body::after {
    position:fixed hides with parent display:none,
    so each FAB only appears on its own tool page.
 ═══════════════════════════════════════════════════ */
+
+/* Hidden on all screen sizes by default; media query below re-enables on mobile */
+.roll-btn-fab { display: none; }
+
 @media (max-width:767px) {
 
   /* ── Dice Roller: Roll button ── */
