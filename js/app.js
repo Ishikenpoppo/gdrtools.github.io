@@ -1,4 +1,4 @@
-/* ── Boot: restore previous session ── */
+﻿/* ── Boot: restore previous session ── */
 (function boot() {
   const restored = restoreSession();
   restoreDiceCounts(); // sync card UI from hidden inputs restored by session

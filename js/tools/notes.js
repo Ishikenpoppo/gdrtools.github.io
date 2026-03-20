@@ -1,4 +1,4 @@
-/* ── Notes state — declared here so restoreSession() can access them ── */
+﻿/* ── Notes state — declared here so restoreSession() can access them ── */
 let notes = [];           // { id, title, content, createdAt, updatedAt }
 let activeNoteId = null;
 let previewMode = false;

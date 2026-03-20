@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b0806">
-<meta name="description" content="Grimoire Ã¨ una web app toolkit per GDR con dice roller, tarot oracle, session notes, combat tracker, encounter generator e NPC forge.">
+<meta name="description" content="Grimoire è una web app toolkit per GDR con dice roller, tarot oracle, session notes, combat tracker, encounter generator e NPC forge.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
 <link rel="apple-touch-icon" href="icons/icon.svg">
-<title>Grimoire â€” GDR Toolkit</title>
+<title>Grimoire — GDR Toolkit</title>
 <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -22,7 +22,7 @@
 <div class="bg-overlay"></div>
 <div class="torch-glow"></div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MAIN â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ══════════════════ MAIN ══════════════════ -->
 <main class="main">
 
   <!-- HOME -->
@@ -78,32 +78,32 @@
       <!-- Tools grid -->
       <div class="home-tools-grid">
         <div class="tool-card" onclick="navigate('dice',null)">
-          <div class="tool-card-icon">ðŸŽ²</div>
+          <div class="tool-card-icon">🎲</div>
           <div class="tool-card-name">Dice Roller</div>
           <div class="tool-card-desc">Roll your fate</div>
         </div>
         <div class="tool-card" onclick="navigate('tarot',null)">
-          <div class="tool-card-icon">ðŸƒ</div>
+          <div class="tool-card-icon">🃏</div>
           <div class="tool-card-name">Tarot Oracle</div>
           <div class="tool-card-desc">Draw insight</div>
         </div>
         <div class="tool-card" onclick="navigate('encounter',null)">
-          <div class="tool-card-icon">ðŸ“œ</div>
+          <div class="tool-card-icon">📜</div>
           <div class="tool-card-name">Encounter</div>
           <div class="tool-card-desc">Generate combat</div>
         </div>
         <div class="tool-card" onclick="navigate('npc',null)">
-          <div class="tool-card-icon">ðŸ§™</div>
+          <div class="tool-card-icon">🧙</div>
           <div class="tool-card-name">NPC Forge</div>
           <div class="tool-card-desc">Create characters</div>
         </div>
         <div class="tool-card" onclick="navigate('initiative',null)">
-          <div class="tool-card-icon">âš”ï¸</div>
+          <div class="tool-card-icon">⚔️</div>
           <div class="tool-card-name">Combat Tracker</div>
           <div class="tool-card-desc">Track battle</div>
         </div>
         <div class="tool-card" onclick="navigate('notes',null)">
-          <div class="tool-card-icon">ðŸ“</div>
+          <div class="tool-card-icon">📝</div>
           <div class="tool-card-name">Session Notes</div>
           <div class="tool-card-desc">Chronicle events</div>
         </div>
@@ -114,10 +114,10 @@
   <!-- DICE ROLLER -->
   <div class="page" id="page-dice">
 
-    <!-- â•â•â•â• IDLE STATE â•â•â•â• -->
+    <!-- ════ IDLE STATE ════ -->
     <div class="tool-state-idle" id="diceStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">ðŸŽ²</div>
+        <div class="idle-icon">🎲</div>
         <div class="idle-title">Dice Roller</div>
         <div class="idle-subtitle">Roll your fate</div>
         <div class="idle-description">Choose your dice, from d4 to d100. Full roll history and export.</div>
@@ -125,20 +125,20 @@
       </div>
     </div>
 
-    <!-- â•â•â•â• INPUT STATE â•â•â•â• -->
+    <!-- ════ INPUT STATE ════ -->
     <div class="tool-state-input" id="diceStateInput">
       <!-- Starfield -->
       <div class="tarot-stars" id="diceStars"></div>
       <!-- FAB: Roll button (mobile only, replaces inline button) -->
-      <button class="roll-btn-fab" onclick="rollDiceAndShowResult()">âš„ Roll</button>
-      <!-- â”€â”€ Left: die selector â”€â”€ -->
+      <button class="roll-btn-fab" onclick="rollDiceAndShowResult()">⚄ Roll</button>
+      <!-- ── Left: die selector ── -->
       <div class="dice-selector-col">
         <div class="dice-col-header">
           <div class="dice-col-breadcrumb">
-            <span class="bc-link" onclick="switchToolState('dice', 'idle')">ðŸ° Home</span>
-            <span class="sep">â€º</span><span>Dice Roller</span>
+            <span class="bc-link" onclick="switchToolState('dice', 'idle')">🏰 Home</span>
+            <span class="sep">›</span><span>Dice Roller</span>
           </div>
-          <div class="dice-col-title">âš… Dice Roller</div>
+          <div class="dice-col-title">⚅ Dice Roller</div>
           <div class="dice-col-sub">Choose your dice, then roll</div>
         </div>
 
@@ -149,24 +149,24 @@
         </div>
 
         <div class="dice-roll-wrap">
-          <button class="roll-btn" id="rollBtn" onclick="rollDiceAndShowResult()">âš„ Roll the Dice</button>
-          <button class="roll-btn-clear" onclick="clearAllDice()">âœ• Clear all dice</button>
+          <button class="roll-btn" id="rollBtn" onclick="rollDiceAndShowResult()">⚄ Roll the Dice</button>
+          <button class="roll-btn-clear" onclick="clearAllDice()">✕ Clear all dice</button>
         </div>
       </div>
 
-      <!-- â”€â”€ Right: results area (hidden until roll) â”€â”€ -->
+      <!-- ── Right: results area (hidden until roll) ── -->
       <div class="dice-results-col">
         <div class="dice-total-zone">
           <div class="total-eyebrow">Total</div>
-          <div class="total-number idle" id="diceTotal">â€”</div>
-          <div class="total-ornament"><span>â§</span></div>
+          <div class="total-number idle" id="diceTotal">—</div>
+          <div class="total-ornament"><span>❧</span></div>
         </div>
         <div class="dice-breakdown" id="diceBreakdown"></div>
         <div class="dice-log-header">
           <div class="dice-log-title">Roll History</div>
           <div class="dice-log-actions">
-            <button class="dice-log-btn green" onclick="exportHistory()">â†“ Export</button>
-            <button class="dice-log-btn red"   onclick="clearHistory()">âœ• Clear</button>
+            <button class="dice-log-btn green" onclick="exportHistory()">↓ Export</button>
+            <button class="dice-log-btn red"   onclick="clearHistory()">✕ Clear</button>
           </div>
         </div>
         <div class="dice-log-empty" id="diceLogEmpty">No rolls yet.<br>Choose your dice and cast them.</div>
@@ -174,18 +174,18 @@
       </div>
     </div>
 
-    <!-- â•â•â•â• RESULT STATE â•â•â•â• -->
+    <!-- ════ RESULT STATE ════ -->
     <div class="tool-state-result" id="diceStateResult">
       <div class="result-panel">
         <div class="result-back">
-          <span class="bc-link" onclick="switchToolState('dice', 'idle')">â† Back</span>
+          <span class="bc-link" onclick="switchToolState('dice', 'idle')">← Back</span>
         </div>
         
         <!-- Big total display -->
         <div class="result-total-zone">
           <div class="result-total-eyebrow">Your Roll</div>
           <div class="result-total-number" id="resultDiceTotal">0</div>
-          <div class="result-total-ornament"><span>â§</span></div>
+          <div class="result-total-ornament"><span>❧</span></div>
         </div>
 
         <!-- Per-die breakdown -->
@@ -215,10 +215,10 @@
   <!-- TAROT ORACLE -->
   <div class="page" id="page-tarot">
 
-    <!-- â•â•â•â• IDLE STATE â•â•â•â• -->
+    <!-- ════ IDLE STATE ════ -->
     <div class="tool-state-idle" id="tarotStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">ðŸƒ</div>
+        <div class="idle-icon">🃏</div>
         <div class="idle-title">Tarot Oracle</div>
         <div class="idle-subtitle">The Arcana awaits</div>
         <div class="idle-description">The Major Arcana holds secrets waiting to be revealed. Draw a card and let chance guide your story toward destiny.</div>
@@ -226,7 +226,7 @@
       </div>
     </div>
 
-    <!-- â•â•â•â• INPUT STATE (Draw interaction) â•â•â•â• -->
+    <!-- ════ INPUT STATE (Draw interaction) ════ -->
     <div class="tool-state-input tarot-centered" id="tarotStateInput">
       <!-- Starfield -->
       <div class="tarot-stars" id="tarotStars"></div>
@@ -252,14 +252,14 @@
       <!-- Aura glow -->
       <div class="card-aura" id="cardAura"></div>
 
-      <button class="draw-btn" id="drawBtn" onclick="drawAndShowTarotResult()">âœ¦ Draw a Card</button>
+      <button class="draw-btn" id="drawBtn" onclick="drawAndShowTarotResult()">✦ Draw a Card</button>
     </div>
 
-    <!-- â•â•â•â• RESULT STATE â•â•â•â• -->
+    <!-- ════ RESULT STATE ════ -->
     <div class="tool-state-result" id="tarotStateResult">
       <div class="result-panel">
         <div class="result-back">
-          <span class="bc-link" onclick="switchToolState('tarot', 'idle')">â† Back</span>
+          <span class="bc-link" onclick="switchToolState('tarot', 'idle')">← Back</span>
         </div>
 
         <!-- Reading content -->
@@ -292,8 +292,8 @@
     <div class="tarot-reading-panel" style="display:none;">
       <div class="reading-header">
         <div class="reading-breadcrumb">
-          <span class="bc-link" onclick="navigate('home',null)">ðŸ° Home</span>
-          <span style="opacity:.30">â€º</span>
+          <span class="bc-link" onclick="navigate('home',null)">🏰 Home</span>
+          <span style="opacity:.30">›</span>
           <span>Tarot Oracle</span>
         </div>
         <div class="reading-numeral" id="infoNumeral">Major Arcana</div>
@@ -310,9 +310,9 @@
         <div class="reading-section">
           <div class="reading-section-label">Questions for your Character</div>
           <div class="reading-prompts" id="infoPrompts">
-            <div class="prompt-item"><span class="prompt-glyph">â§</span>What does your character truly want in this moment?</div>
-            <div class="prompt-item"><span class="prompt-glyph">â§</span>What are they afraid to admit, even to themselves?</div>
-            <div class="prompt-item"><span class="prompt-glyph">â§</span>If fate has already written the next act, what would your character choose to do anyway?</div>
+            <div class="prompt-item"><span class="prompt-glyph">❧</span>What does your character truly want in this moment?</div>
+            <div class="prompt-item"><span class="prompt-glyph">❧</span>What are they afraid to admit, even to themselves?</div>
+            <div class="prompt-item"><span class="prompt-glyph">❧</span>If fate has already written the next act, what would your character choose to do anyway?</div>
           </div>
         </div>
       </div>
@@ -325,13 +325,13 @@
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â• SESSION NOTES â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ════════════ SESSION NOTES ════════════ -->
   <div class="page" id="page-notes">
 
     <!-- IDLE STATE -->
     <div class="tool-state-idle" id="notesStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">ðŸ“</div>
+        <div class="idle-icon">📝</div>
         <div class="idle-title">The Scriptorium Awaits</div>
         <div class="idle-subtitle">Chronicle your adventure</div>
         <div class="idle-description">Create your first note to begin recording the tales, triumphs, and details of your campaign.</div>
@@ -346,9 +346,9 @@
       <!-- Left: note list -->
       <div class="notes-list-panel">
         <div class="notes-list-header">
-          <div class="notes-list-title">ðŸ“ Session Notes</div>
+          <div class="notes-list-title">📝 Session Notes</div>
           <button class="new-note-btn" onclick="createNote()">
-            <span class="btn-icon">âœ¦</span> New Note
+            <span class="btn-icon">✦</span> New Note
           </button>
         </div>
         <div class="notes-empty-state" id="notesEmptyState">
@@ -360,7 +360,7 @@
       <!-- Right: editor / preview -->
       <div class="notes-work-area" id="notesWorkArea">
         <div class="notes-empty-editor" id="notesEditorEmpty">
-          <div class="empty-icon">ðŸ“œ</div>
+          <div class="empty-icon">📜</div>
           <div class="empty-title">The Scriptorium Awaits</div>
           <div class="empty-sub">Create a new note or select one<br>from the list to begin writing.</div>
         </div>
@@ -372,9 +372,9 @@
               oninput="onTitleChange()" maxlength="120">
             <span class="note-date-badge" id="noteDateBadge"></span>
             <button class="note-action-btn mode-toggle" id="modeToggleBtn" onclick="togglePreview()">Preview</button>
-            <button class="note-action-btn export-md" onclick="exportNote('md')">â†“ .md</button>
-            <button class="note-action-btn export-txt" onclick="exportNote('txt')">â†“ .txt</button>
-            <button class="note-action-btn delete-note" onclick="deleteNote()">âœ• Delete</button>
+            <button class="note-action-btn export-md" onclick="exportNote('md')">↓ .md</button>
+            <button class="note-action-btn export-txt" onclick="exportNote('txt')">↓ .txt</button>
+            <button class="note-action-btn delete-note" onclick="deleteNote()">✕ Delete</button>
           </div>
 
           <div class="notes-toolbar" id="notesToolbar">
@@ -386,10 +386,10 @@
             <button class="toolbar-btn" title="Italic" onclick="insertMd('*','*')"><i>I</i></button>
             <button class="toolbar-btn" title="Inline code" onclick="insertMd('`','`')">&lt;/&gt;</button>
             <div class="toolbar-sep"></div>
-            <button class="toolbar-btn" title="Blockquote" onclick="insertMd('> ','','heading')">â</button>
-            <button class="toolbar-btn" title="Unordered list" onclick="insertMd('- ','','heading')">â€¢ List</button>
+            <button class="toolbar-btn" title="Blockquote" onclick="insertMd('> ','','heading')">❝</button>
+            <button class="toolbar-btn" title="Unordered list" onclick="insertMd('- ','','heading')">• List</button>
             <button class="toolbar-btn" title="Ordered list" onclick="insertMd('1. ','','heading')">1. List</button>
-            <button class="toolbar-btn" title="Horizontal rule" onclick="insertMd('\n---\n','','full')">â”€ HR</button>
+            <button class="toolbar-btn" title="Horizontal rule" onclick="insertMd('\n---\n','','full')">─ HR</button>
             <div class="toolbar-sep"></div>
             <button class="toolbar-btn" title="Bold italic" onclick="insertMd('***','***')"><i><b>BI</b></i></button>
             <button class="toolbar-btn" title="Strikethrough" onclick="insertMd('~~','~~')"><s>S</s></button>
@@ -398,7 +398,7 @@
 
           <div class="notes-editor-wrap">
             <textarea class="notes-textarea" id="noteTextarea"
-              placeholder="Begin your chronicle hereâ€¦&#10;&#10;Use # for headings, **bold**, *italic*, > for quotesâ€¦"
+              placeholder="Begin your chronicle here…&#10;&#10;Use # for headings, **bold**, *italic*, > for quotes…"
               oninput="onContentChange()" spellcheck="true"></textarea>
             <div class="notes-preview" id="notesPreview"></div>
           </div>
@@ -407,7 +407,7 @@
             <div class="status-item">Words: <span id="statusWords">0</span></div>
             <div class="status-item">Chars: <span id="statusChars">0</span></div>
             <div class="status-item">Lines: <span id="statusLines">0</span></div>
-            <div class="status-item" style="margin-left:auto;" id="statusSaved">âœ¦ Auto-saved</div>
+            <div class="status-item" style="margin-left:auto;" id="statusSaved">✦ Auto-saved</div>
           </div>
         </div>
       </div>
@@ -421,7 +421,7 @@
     <!-- IDLE STATE -->
     <div class="tool-state-idle" id="initiativeStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">âš”ï¸</div>
+        <div class="idle-icon">⚔️</div>
         <div class="idle-title">The Battle Awaits</div>
         <div class="idle-subtitle">Manage initiative order</div>
         <div class="idle-description">Add your fighters to the battle tracker and watch the combat unfold with precision.</div>
@@ -436,11 +436,11 @@
       <div class="init-add-panel">
         <div class="init-add-header">
           <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:12.5px;color:var(--ink-dim);opacity:.50;margin-bottom:8px;">
-            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">ðŸ° Home</span>
-            <span style="opacity:.35;margin:0 5px;">â€º</span>
+            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">🏰 Home</span>
+            <span style="opacity:.35;margin:0 5px;">›</span>
             <span>Initiative</span>
           </div>
-          <div class="init-add-title">âš”ï¸ Initiative Order</div>
+          <div class="init-add-title">⚔️ Initiative Order</div>
           <div class="init-add-sub">Add combatants to the battle</div>
         </div>
         <div class="init-add-body">
@@ -513,7 +513,7 @@
           <button class="init-ctrl-btn clear-combat" onclick="resetCombatAndReturn()">Reset</button>
         </div>
         <div class="init-empty" id="initEmpty" style="display:flex">
-          <div class="init-empty-icon" style="font-size:46px;margin-bottom:14px;opacity:.25">âš”ï¸</div>
+          <div class="init-empty-icon" style="font-size:46px;margin-bottom:14px;opacity:.25">⚔️</div>
           <div class="init-empty-title">No Combatants Yet</div>
           <div class="init-empty-sub">Add fighters using the panel<br>on the left to begin tracking.</div>
         </div>
@@ -528,10 +528,10 @@
     <!-- IDLE STATE -->
     <div class="tool-state-idle" id="encounterStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">âš”</div>
+        <div class="idle-icon">⚔</div>
         <div class="idle-title">Awaiting the Call to Arms</div>
         <div class="idle-subtitle">Forge a balanced battle</div>
-        <div class="idle-description">Set your party configuration and terrain, then generate an encounter calibrated to challenge â€” not crush.</div>
+        <div class="idle-description">Set your party configuration and terrain, then generate an encounter calibrated to challenge — not crush.</div>
         <button class="btn-primary btn-lg" onclick="switchToolState('encounter', 'input')">Configure Encounter</button>
       </div>
     </div>
@@ -544,11 +544,11 @@
       <div class="enc-config-panel">
         <div class="enc-config-header">
           <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:12.5px;color:var(--text-lo);opacity:.50;margin-bottom:8px;">
-            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">ðŸ° Home</span>
-            <span style="opacity:.35;margin:0 5px;">â€º</span>
+            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">🏰 Home</span>
+            <span style="opacity:.35;margin:0 5px;">›</span>
             <span>Encounter Gen</span>
           </div>
-          <div class="enc-config-title">ðŸ“œ Encounters</div>
+          <div class="enc-config-title">📜 Encounters</div>
           <div class="enc-config-sub">Forge a balanced battle</div>
         </div>
 
@@ -560,7 +560,7 @@
             <div class="enc-steppers-row">
               <div>
                 <div class="enc-stepper">
-                  <button class="enc-step-btn" onclick="encAdjust('level',-1)">âˆ’</button>
+                  <button class="enc-step-btn" onclick="encAdjust('level',-1)">−</button>
                   <div class="enc-step-val" id="encLevelVal">5</div>
                   <button class="enc-step-btn" onclick="encAdjust('level',+1)">+</button>
                 </div>
@@ -568,7 +568,7 @@
               </div>
               <div>
                 <div class="enc-stepper">
-                  <button class="enc-step-btn" onclick="encAdjust('size',-1)">âˆ’</button>
+                  <button class="enc-step-btn" onclick="encAdjust('size',-1)">−</button>
                   <div class="enc-step-val" id="encSizeVal">4</div>
                   <button class="enc-step-btn" onclick="encAdjust('size',+1)">+</button>
                 </div>
@@ -610,7 +610,7 @@
           <div class="enc-divider"></div>
 
           <button class="enc-generate-btn" id="encGenerateBtn" onclick="generateEncounterAndShowResult()">
-            âš” Generate Encounter
+            ⚔ Generate Encounter
           </button>
 
         </div><!-- /enc-config-body -->
@@ -620,8 +620,8 @@
       <div class="enc-results-area">
         <div class="enc-results-header" id="encResultsHeader">
           <div class="enc-results-breadcrumb">
-            <span class="bc-link" onclick="navigate('home',null)">ðŸ° Home</span>
-            <span style="opacity:.30">â€º</span>
+            <span class="bc-link" onclick="navigate('home',null)">🏰 Home</span>
+            <span style="opacity:.30">›</span>
             <span>Encounter Generator</span>
           </div>
           <div class="enc-results-eyebrow" id="encEyebrow">Encounter Builder</div>
@@ -637,7 +637,7 @@
           </div>
         </div>
         <div class="enc-idle-state" id="encIdleState">
-          <div class="enc-idle-sigil">âš”</div>
+          <div class="enc-idle-sigil">⚔</div>
           <div class="enc-idle-title">Awaiting Configuration</div>
           <div class="enc-idle-sub">Adjust party level, size,<br>difficulty, and terrain on the left,<br>then generate.</div>
         </div>
@@ -651,7 +651,7 @@
     <!-- RESULT STATE -->
     <div class="tool-state-result" id="encounterStateResult">
       <div class="result-panel">
-        <div class="result-back"><span class="bc-link" onclick="switchToolState('encounter', 'input')">â† Back to Config</span></div>
+        <div class="result-back"><span class="bc-link" onclick="switchToolState('encounter', 'input')">← Back to Config</span></div>
         <div class="enc-flavor-result" id="encFlavorResult"></div>
         <div class="enc-monster-scroll-result" id="encMonsterScrollResult">
           <div class="enc-monster-grid" id="encMonsterGridResult"></div>
@@ -672,7 +672,7 @@
     <!-- IDLE STATE -->
     <div class="tool-state-idle" id="npcStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">ðŸ§™</div>
+        <div class="idle-icon">🧙</div>
         <div class="idle-title">The Slate is Blank</div>
         <div class="idle-subtitle">Breathe life into the world</div>
         <div class="idle-description">Choose a race, gender, and social standing, then forge your character into existence.</div>
@@ -688,11 +688,11 @@
       <div class="npc-config-panel">
         <div class="npc-config-header">
           <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:12.5px;color:var(--text-lo);opacity:.50;margin-bottom:8px;">
-            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">ðŸ° Home</span>
-            <span style="opacity:.35;margin:0 5px;">â€º</span>
+            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">🏰 Home</span>
+            <span style="opacity:.35;margin:0 5px;">›</span>
             <span>NPC Forge</span>
           </div>
-          <div class="npc-config-title">ðŸ§™ NPC Forge</div>
+          <div class="npc-config-title">🧙 NPC Forge</div>
           <div class="npc-config-sub">Breathe life into the world</div>
         </div>
 
@@ -761,7 +761,7 @@
           <div class="npc-divider"></div>
 
           <button class="npc-forge-btn" id="npcForgeBtn" onclick="forgeNPCAndShowResult()">
-            âœ¦ Forge Character
+            ✦ Forge Character
           </button>
 
         </div><!-- /npc-config-body -->
@@ -771,8 +771,8 @@
       <div class="npc-result-area">
         <div class="npc-result-header">
           <div class="npc-result-breadcrumb">
-            <span class="bc-link" onclick="navigate('home',null)">ðŸ° Home</span>
-            <span style="opacity:.30">â€º</span>
+            <span class="bc-link" onclick="navigate('home',null)">🏰 Home</span>
+            <span style="opacity:.30">›</span>
             <span>NPC Forge</span>
           </div>
           <div class="npc-result-eyebrow" id="npcEyebrow">Character Record</div>
@@ -831,7 +831,7 @@
     <!-- RESULT STATE (fullscreen view) -->
     <div class="tool-state-result" id="npcStateResult">
       <div class="result-panel">
-        <div class="result-back"><span class="bc-link" onclick="switchToolState('npc', 'input')">â† Back to Config</span></div>
+        <div class="result-back"><span class="bc-link" onclick="switchToolState('npc', 'input')">← Back to Config</span></div>
         <div class="npc-portrait-row">
           <div class="npc-portrait-card" id="npcPortraitCardFull">
             <div class="npc-portrait-area" id="npcPortraitAreaFull"></div>
@@ -874,7 +874,7 @@
         </div>
         <div class="result-actions">
           <button class="btn-primary btn-lg" onclick="switchToolState('npc', 'input')">Forge Another</button>
-          <button class="btn-ghost" onclick="npcSaveToNotesAndReturn()">âœ¦ Save to Notes</button>
+          <button class="btn-ghost" onclick="npcSaveToNotesAndReturn()">✦ Save to Notes</button>
         </div>
       </div>
     </div><!-- /tool-state-result -->
@@ -883,34 +883,34 @@
 
 </main>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• BOTTOM NAVIGATION BAR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ══════════════════ BOTTOM NAVIGATION BAR ══════════════════ -->
 <nav class="bottom-nav" id="bottomNav">
   <button class="bottom-nav-item active" data-page="home" onclick="navigate('home',this)" title="Home">
-    <span class="bottom-nav-icon">ðŸ°</span>
+    <span class="bottom-nav-icon">🏰</span>
     <span class="bottom-nav-label">Home</span>
   </button>
   <button class="bottom-nav-item" data-page="encounter" onclick="navigate('encounter',this)" title="Encounter Generator">
-    <span class="bottom-nav-icon">ðŸ“œ</span>
+    <span class="bottom-nav-icon">📜</span>
     <span class="bottom-nav-label">Encounter</span>
   </button>
   <button class="bottom-nav-item" data-page="dice" onclick="navigate('dice',this)" title="Dice Roller">
-    <span class="bottom-nav-icon">ðŸŽ²</span>
+    <span class="bottom-nav-icon">🎲</span>
     <span class="bottom-nav-label">Dice</span>
   </button>
   <button class="bottom-nav-item" data-page="notes" onclick="navigate('notes',this)" title="Session Notes">
-    <span class="bottom-nav-icon">ðŸ“</span>
+    <span class="bottom-nav-icon">📝</span>
     <span class="bottom-nav-label">Notes</span>
   </button>
   <button class="bottom-nav-item" data-page="initiative" onclick="navigate('initiative',this)" title="Combat Tracker">
-    <span class="bottom-nav-icon">âš”ï¸</span>
+    <span class="bottom-nav-icon">⚔️</span>
     <span class="bottom-nav-label">Combat</span>
   </button>
   <button class="bottom-nav-item" data-page="npc" onclick="navigate('npc',this)" title="NPC Forge">
-    <span class="bottom-nav-icon">ðŸ§™</span>
+    <span class="bottom-nav-icon">🧙</span>
     <span class="bottom-nav-label">NPC</span>
   </button>
   <button class="bottom-nav-item" data-page="tarot" onclick="navigate('tarot',this)" title="Tarot Oracle">
-    <span class="bottom-nav-icon">ðŸƒ</span>
+    <span class="bottom-nav-icon">🃏</span>
     <span class="bottom-nav-label">Tarot</span>
   </button>
 </nav>
