@@ -1,11 +1,22 @@
-const CACHE_NAME = 'grimoire-pwa-v1';
+const CACHE_NAME = 'grimoire-pwa-v2';
 const PRECACHE_URLS = [
   './',
   './index.html',
   './manifest.webmanifest',
   './styles.css',
   './u_qpfzpydtro-dice-142528.mp3',
-  './icons/icon.svg'
+  './icons/icon.svg',
+  './js/data/tarot-data.js',
+  './js/core/particles.js',
+  './js/core/persistence.js',
+  './js/tools/dice.js',
+  './js/tools/tarot.js',
+  './js/tools/notes.js',
+  './js/tools/initiative.js',
+  './js/tools/encounter.js',
+  './js/tools/npc.js',
+  './js/core/navigation.js',
+  './js/app.js'
 ];
 
 self.addEventListener('install', (event) => {
