@@ -1,4 +1,12 @@
-﻿/* ── Boot: restore previous session ── */
+﻿/* ── Populate all SVG icons from data-icon attributes ── */
+(function initIcons() {
+  document.querySelectorAll('[data-icon]').forEach(el => {
+    const name = el.getAttribute('data-icon');
+    if (ICONS[name]) el.innerHTML = ICONS[name];
+  });
+})();
+
+/* ── Boot: restore previous session ── */
 (function boot() {
   const restored = restoreSession();
   restoreDiceCounts(); // sync card UI from hidden inputs restored by session

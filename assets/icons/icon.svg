@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1510"/>
+      <stop offset="100%" stop-color="#0b0806"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowSoft">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" ry="96" fill="url(#bg)"/>
+  <rect x="8" y="8" width="496" height="496" rx="90" ry="90" fill="none" stroke="rgba(200,146,42,.20)" stroke-width="1.5"/>
+  <!-- Outer arcane ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="rgba(200,146,42,.25)" stroke-width="1.5" stroke-dasharray="12 8" filter="url(#glowSoft)"/>
+  <!-- Mid ring -->
+  <circle cx="256" cy="256" r="165" fill="none" stroke="rgba(200,146,42,.15)" stroke-width="1" stroke-dasharray="8 12"/>
+  <!-- Inner arcane circle -->
+  <circle cx="256" cy="256" r="130" fill="none" stroke="rgba(200,146,42,.30)" stroke-width="1.5" filter="url(#glowSoft)"/>
+  <!-- Cross lines -->
+  <line x1="256" y1="126" x2="256" y2="386" stroke="rgba(200,146,42,.15)" stroke-width="1"/>
+  <line x1="126" y1="256" x2="386" y2="256" stroke="rgba(200,146,42,.15)" stroke-width="1"/>
+  <line x1="164" y1="164" x2="348" y2="348" stroke="rgba(200,146,42,.08)" stroke-width="1"/>
+  <line x1="348" y1="164" x2="164" y2="348" stroke="rgba(200,146,42,.08)" stroke-width="1"/>
+  <!-- Compass star points -->
+  <polygon points="256,135 260,220 256,230 252,220" fill="rgba(240,184,64,.35)" stroke="none"/>
+  <polygon points="256,377 260,292 256,282 252,292" fill="rgba(240,184,64,.35)" stroke="none"/>
+  <polygon points="377,256 292,260 282,256 292,252" fill="rgba(240,184,64,.35)" stroke="none"/>
+  <polygon points="135,256 220,260 230,256 220,252" fill="rgba(240,184,64,.35)" stroke="none"/>
+  <!-- Central letter G -->
+  <text x="256" y="280" text-anchor="middle" font-family="serif" font-size="180" font-weight="700" fill="none" stroke="rgba(200,146,42,.08)" stroke-width="2">G</text>
+  <text x="256" y="280" text-anchor="middle" font-family="serif" font-size="180" font-weight="700" fill="#c8922a" filter="url(#glow)">G</text>
+  <!-- Inner glow circle -->
+  <circle cx="256" cy="256" r="28" fill="rgba(200,146,42,.06)" stroke="rgba(240,184,64,.25)" stroke-width="2"/>
+</svg>

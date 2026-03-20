@@ -341,12 +341,16 @@ body::after {
 }
 
 .tool-card-icon {
-  font-size: calc(42px * var(--fs-scale));
-  height: 48px;
+  width: calc(42px * var(--fs-scale));
+  height: calc(42px * var(--fs-scale));
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: filter .18s ease;
+  color: var(--gold);
+  transition: filter .18s ease, color .18s ease;
+}
+.tool-card-icon svg {
+  width: 100%; height: 100%;
 }
 
 .tool-card:hover .tool-card-icon {
@@ -862,8 +866,13 @@ body::after {
 }
 
 .idle-icon {
-  font-size: calc(72px * var(--fs-scale));
+  width: calc(72px * var(--fs-scale));
+  height: calc(72px * var(--fs-scale));
+  color: var(--gold);
   animation: fadeUp .5s .1s ease both;
+}
+.idle-icon svg {
+  width: 100%; height: 100%;
 }
 
 .idle-title {
@@ -1478,7 +1487,14 @@ body::after {
   text-align:center; padding:var(--sp-10);
   opacity:0; animation:fadeUp .5s .1s ease forwards;
 }
-.notes-empty-editor .empty-icon { font-size: calc(55px * var(--fs-scale)); margin-bottom:var(--sp-5); opacity:.30; }
+.notes-empty-editor .empty-icon {
+  width: calc(55px * var(--fs-scale));
+  height: calc(55px * var(--fs-scale));
+  margin-bottom:var(--sp-5);
+  opacity:.30;
+  color: var(--gold);
+}
+.notes-empty-editor .empty-icon svg { width: 100%; height: 100%; }
 .notes-empty-editor .empty-title {
   font-family:'Cinzel',serif; font-weight:700; font-size: calc(17px * var(--fs-scale));
   letter-spacing:.12em; text-transform:uppercase; color:var(--text-lo); margin-bottom:6px;
@@ -1665,7 +1681,14 @@ body::after {
   height:100%; text-align:center; padding:var(--sp-10);
   opacity:0; animation:fadeUp .5s .1s ease forwards;
 }
-.init-empty-icon { font-size: calc(50.5px * var(--fs-scale)); margin-bottom:var(--sp-4); opacity:.22; }
+.init-empty-icon {
+  width: calc(50.5px * var(--fs-scale));
+  height: calc(50.5px * var(--fs-scale));
+  margin-bottom:var(--sp-4);
+  opacity:.22;
+  color: var(--gold);
+}
+.init-empty-icon svg { width: 100%; height: 100%; }
 .init-empty-title {
   font-family:'Cinzel',serif; font-weight:700; font-size: calc(16px * var(--fs-scale));
   letter-spacing:.12em; text-transform:uppercase; color:var(--text-lo); margin-bottom:5px;
@@ -2029,9 +2052,13 @@ body::after {
   text-align:center; padding:var(--sp-10);
 }
 .enc-idle-sigil {
-  font-size: calc(64.5px * var(--fs-scale)); opacity:.15; margin-bottom:var(--sp-6);
+  width: calc(64.5px * var(--fs-scale));
+  height: calc(64.5px * var(--fs-scale));
+  opacity:.15; margin-bottom:var(--sp-6);
+  color: var(--gold);
   animation:encIdlePulse 4s ease-in-out infinite;
 }
+.enc-idle-sigil svg { width: 100%; height: 100%; }
 @keyframes encIdlePulse { 0%,100%{opacity:.12;transform:scale(1)} 50%{opacity:.22;transform:scale(1.04)} }
 .enc-idle-title {
   font-family:'Cinzel',serif; font-weight:700; font-size: calc(17px * var(--fs-scale));
@@ -2477,17 +2504,24 @@ body::after {
 }
 
 .bottom-nav-icon {
-  font-size: calc(20px * var(--fs-scale));
+  width: calc(20px * var(--fs-scale));
+  height: calc(20px * var(--fs-scale));
   flex-shrink: 0;
-  transition: filter 0.18s ease;
+  color: var(--text-lo);
+  transition: filter 0.18s ease, color 0.18s ease;
+}
+.bottom-nav-icon svg {
+  width: 100%; height: 100%;
 }
 
 .bottom-nav-item:hover .bottom-nav-icon {
   filter: drop-shadow(0 0 5px rgba(240,184,64,.35));
+  color: var(--gold);
 }
 
 .bottom-nav-item.active .bottom-nav-icon {
   filter: drop-shadow(0 0 8px rgba(240,184,64,.60));
+  color: var(--gold-hi);
 }
 
 .bottom-nav-label {
@@ -2495,6 +2529,38 @@ body::after {
   letter-spacing: 0.05em;
   white-space: nowrap;
   transition: color 0.18s ease;
+}
+
+/* ═══════════════════════════════════════════════════
+   SVG ICON UTILITY CLASSES
+═══════════════════════════════════════════════════ */
+
+/* Inline icon in text (titles, buttons) */
+.inline-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  width: 1em; height: 1em;
+  color: var(--gold);
+  position: relative;
+  top: -.08em;
+}
+.inline-icon svg { width: 100%; height: 100%; }
+
+/* Breadcrumb icon (small, beside "Home" links) */
+.bc-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  width: .85em; height: .85em;
+  color: var(--gold);
+  opacity: .7;
+  position: relative;
+  top: -.05em;
+}
+.bc-icon svg { width: 100%; height: 100%; }
+
+/* Hover glow on tool card SVG icons */
+.tool-card:hover .tool-card-icon {
+  color: var(--gold-hi);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -2626,8 +2692,8 @@ body::after {
   }
 
   .tool-card-icon {
-    font-size: calc(30px * var(--fs-scale));
-    height: 36px;
+    width: calc(30px * var(--fs-scale));
+    height: calc(30px * var(--fs-scale));
   }
 
   .tool-card-name {
@@ -2674,8 +2740,8 @@ body::after {
   }
 
   .tool-card-icon {
-    font-size: calc(26px * var(--fs-scale));
-    height: 30px;
+    width: calc(26px * var(--fs-scale));
+    height: calc(26px * var(--fs-scale));
   }
 
   .tool-card-name {

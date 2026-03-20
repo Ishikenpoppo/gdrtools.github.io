@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Grimoire">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/svg+xml" href="icons/icon.svg">
-<link rel="apple-touch-icon" href="icons/icon.svg">
+<link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 <title>Grimoire — GDR Toolkit</title>
 <link rel="stylesheet" href="styles.css">
 
@@ -78,32 +78,32 @@
       <!-- Tools grid -->
       <div class="home-tools-grid">
         <div class="tool-card" onclick="navigate('dice',null)">
-          <div class="tool-card-icon">🎲</div>
+          <div class="tool-card-icon" data-icon="dice"></div>
           <div class="tool-card-name">Dice Roller</div>
           <div class="tool-card-desc">Roll your fate</div>
         </div>
         <div class="tool-card" onclick="navigate('tarot',null)">
-          <div class="tool-card-icon">🃏</div>
+          <div class="tool-card-icon" data-icon="tarot"></div>
           <div class="tool-card-name">Tarot Oracle</div>
           <div class="tool-card-desc">Draw insight</div>
         </div>
         <div class="tool-card" onclick="navigate('encounter',null)">
-          <div class="tool-card-icon">📜</div>
+          <div class="tool-card-icon" data-icon="encounter"></div>
           <div class="tool-card-name">Encounter</div>
           <div class="tool-card-desc">Generate combat</div>
         </div>
         <div class="tool-card" onclick="navigate('npc',null)">
-          <div class="tool-card-icon">🧙</div>
+          <div class="tool-card-icon" data-icon="npc"></div>
           <div class="tool-card-name">NPC Forge</div>
           <div class="tool-card-desc">Create characters</div>
         </div>
         <div class="tool-card" onclick="navigate('initiative',null)">
-          <div class="tool-card-icon">⚔️</div>
+          <div class="tool-card-icon" data-icon="combat"></div>
           <div class="tool-card-name">Combat Tracker</div>
           <div class="tool-card-desc">Track battle</div>
         </div>
         <div class="tool-card" onclick="navigate('notes',null)">
-          <div class="tool-card-icon">📝</div>
+          <div class="tool-card-icon" data-icon="notes"></div>
           <div class="tool-card-name">Session Notes</div>
           <div class="tool-card-desc">Chronicle events</div>
         </div>
@@ -117,7 +117,7 @@
     <!-- ════ IDLE STATE ════ -->
     <div class="tool-state-idle" id="diceStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">🎲</div>
+        <div class="idle-icon" data-icon="dice"></div>
         <div class="idle-title">Dice Roller</div>
         <div class="idle-subtitle">Roll your fate</div>
         <div class="idle-description">Choose your dice, from d4 to d100. Full roll history and export.</div>
@@ -135,7 +135,7 @@
       <div class="dice-selector-col">
         <div class="dice-col-header">
           <div class="dice-col-breadcrumb">
-            <span class="bc-link" onclick="switchToolState('dice', 'idle')">🏰 Home</span>
+            <span class="bc-link" onclick="switchToolState('dice', 'idle')"><span class="bc-icon" data-icon="home"></span> Home</span>
             <span class="sep">›</span><span>Dice Roller</span>
           </div>
           <div class="dice-col-title">⚅ Dice Roller</div>
@@ -218,7 +218,7 @@
     <!-- ════ IDLE STATE ════ -->
     <div class="tool-state-idle" id="tarotStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">🃏</div>
+        <div class="idle-icon" data-icon="tarot"></div>
         <div class="idle-title">Tarot Oracle</div>
         <div class="idle-subtitle">The Arcana awaits</div>
         <div class="idle-description">The Major Arcana holds secrets waiting to be revealed. Draw a card and let chance guide your story toward destiny.</div>
@@ -292,7 +292,7 @@
     <div class="tarot-reading-panel" style="display:none;">
       <div class="reading-header">
         <div class="reading-breadcrumb">
-          <span class="bc-link" onclick="navigate('home',null)">🏰 Home</span>
+          <span class="bc-link" onclick="navigate('home',null)"><span class="bc-icon" data-icon="home"></span> Home</span>
           <span style="opacity:.30">›</span>
           <span>Tarot Oracle</span>
         </div>
@@ -331,7 +331,7 @@
     <!-- IDLE STATE -->
     <div class="tool-state-idle" id="notesStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">📝</div>
+        <div class="idle-icon" data-icon="notes"></div>
         <div class="idle-title">The Scriptorium Awaits</div>
         <div class="idle-subtitle">Chronicle your adventure</div>
         <div class="idle-description">Create your first note to begin recording the tales, triumphs, and details of your campaign.</div>
@@ -346,7 +346,7 @@
       <!-- Left: note list -->
       <div class="notes-list-panel">
         <div class="notes-list-header">
-          <div class="notes-list-title">📝 Session Notes</div>
+          <div class="notes-list-title"><span class="inline-icon" data-icon="notes"></span> Session Notes</div>
           <button class="new-note-btn" onclick="createNote()">
             <span class="btn-icon">✦</span> New Note
           </button>
@@ -360,7 +360,7 @@
       <!-- Right: editor / preview -->
       <div class="notes-work-area" id="notesWorkArea">
         <div class="notes-empty-editor" id="notesEditorEmpty">
-          <div class="empty-icon">📜</div>
+          <div class="empty-icon" data-icon="encounter"></div>
           <div class="empty-title">The Scriptorium Awaits</div>
           <div class="empty-sub">Create a new note or select one<br>from the list to begin writing.</div>
         </div>
@@ -421,7 +421,7 @@
     <!-- IDLE STATE -->
     <div class="tool-state-idle" id="initiativeStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">⚔️</div>
+        <div class="idle-icon" data-icon="combat"></div>
         <div class="idle-title">The Battle Awaits</div>
         <div class="idle-subtitle">Manage initiative order</div>
         <div class="idle-description">Add your fighters to the battle tracker and watch the combat unfold with precision.</div>
@@ -436,11 +436,11 @@
       <div class="init-add-panel">
         <div class="init-add-header">
           <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:12.5px;color:var(--ink-dim);opacity:.50;margin-bottom:8px;">
-            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">🏰 Home</span>
+            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;"><span class="bc-icon" data-icon="home"></span> Home</span>
             <span style="opacity:.35;margin:0 5px;">›</span>
             <span>Initiative</span>
           </div>
-          <div class="init-add-title">⚔️ Initiative Order</div>
+          <div class="init-add-title"><span class="inline-icon" data-icon="combat"></span> Initiative Order</div>
           <div class="init-add-sub">Add combatants to the battle</div>
         </div>
         <div class="init-add-body">
@@ -513,7 +513,7 @@
           <button class="init-ctrl-btn clear-combat" onclick="resetCombatAndReturn()">Reset</button>
         </div>
         <div class="init-empty" id="initEmpty" style="display:flex">
-          <div class="init-empty-icon" style="font-size:46px;margin-bottom:14px;opacity:.25">⚔️</div>
+          <div class="init-empty-icon" data-icon="combat" style="margin-bottom:14px;opacity:.25"></div>
           <div class="init-empty-title">No Combatants Yet</div>
           <div class="init-empty-sub">Add fighters using the panel<br>on the left to begin tracking.</div>
         </div>
@@ -528,7 +528,7 @@
     <!-- IDLE STATE -->
     <div class="tool-state-idle" id="encounterStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">⚔</div>
+        <div class="idle-icon" data-icon="combat"></div>
         <div class="idle-title">Awaiting the Call to Arms</div>
         <div class="idle-subtitle">Forge a balanced battle</div>
         <div class="idle-description">Set your party configuration and terrain, then generate an encounter calibrated to challenge — not crush.</div>
@@ -544,11 +544,11 @@
       <div class="enc-config-panel">
         <div class="enc-config-header">
           <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:12.5px;color:var(--text-lo);opacity:.50;margin-bottom:8px;">
-            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">🏰 Home</span>
+            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;"><span class="bc-icon" data-icon="home"></span> Home</span>
             <span style="opacity:.35;margin:0 5px;">›</span>
             <span>Encounter Gen</span>
           </div>
-          <div class="enc-config-title">📜 Encounters</div>
+          <div class="enc-config-title"><span class="inline-icon" data-icon="encounter"></span> Encounters</div>
           <div class="enc-config-sub">Forge a balanced battle</div>
         </div>
 
@@ -610,7 +610,7 @@
           <div class="enc-divider"></div>
 
           <button class="enc-generate-btn" id="encGenerateBtn" onclick="generateEncounterAndShowResult()">
-            ⚔ Generate Encounter
+            <span class="inline-icon" data-icon="combat"></span> Generate Encounter
           </button>
 
         </div><!-- /enc-config-body -->
@@ -620,7 +620,7 @@
       <div class="enc-results-area">
         <div class="enc-results-header" id="encResultsHeader">
           <div class="enc-results-breadcrumb">
-            <span class="bc-link" onclick="navigate('home',null)">🏰 Home</span>
+            <span class="bc-link" onclick="navigate('home',null)"><span class="bc-icon" data-icon="home"></span> Home</span>
             <span style="opacity:.30">›</span>
             <span>Encounter Generator</span>
           </div>
@@ -637,7 +637,7 @@
           </div>
         </div>
         <div class="enc-idle-state" id="encIdleState">
-          <div class="enc-idle-sigil">⚔</div>
+          <div class="enc-idle-sigil" data-icon="combat"></div>
           <div class="enc-idle-title">Awaiting Configuration</div>
           <div class="enc-idle-sub">Adjust party level, size,<br>difficulty, and terrain on the left,<br>then generate.</div>
         </div>
@@ -672,7 +672,7 @@
     <!-- IDLE STATE -->
     <div class="tool-state-idle" id="npcStateIdle">
       <div class="idle-panel">
-        <div class="idle-icon">🧙</div>
+        <div class="idle-icon" data-icon="npc"></div>
         <div class="idle-title">The Slate is Blank</div>
         <div class="idle-subtitle">Breathe life into the world</div>
         <div class="idle-description">Choose a race, gender, and social standing, then forge your character into existence.</div>
@@ -688,11 +688,11 @@
       <div class="npc-config-panel">
         <div class="npc-config-header">
           <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:12.5px;color:var(--text-lo);opacity:.50;margin-bottom:8px;">
-            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;">🏰 Home</span>
+            <span class="bc-link" onclick="navigate('home',null)" style="cursor:pointer;"><span class="bc-icon" data-icon="home"></span> Home</span>
             <span style="opacity:.35;margin:0 5px;">›</span>
             <span>NPC Forge</span>
           </div>
-          <div class="npc-config-title">🧙 NPC Forge</div>
+          <div class="npc-config-title"><span class="inline-icon" data-icon="npc"></span> NPC Forge</div>
           <div class="npc-config-sub">Breathe life into the world</div>
         </div>
 
@@ -771,7 +771,7 @@
       <div class="npc-result-area">
         <div class="npc-result-header">
           <div class="npc-result-breadcrumb">
-            <span class="bc-link" onclick="navigate('home',null)">🏰 Home</span>
+            <span class="bc-link" onclick="navigate('home',null)"><span class="bc-icon" data-icon="home"></span> Home</span>
             <span style="opacity:.30">›</span>
             <span>NPC Forge</span>
           </div>
@@ -886,39 +886,40 @@
 <!-- ══════════════════ BOTTOM NAVIGATION BAR ══════════════════ -->
 <nav class="bottom-nav" id="bottomNav">
   <button class="bottom-nav-item active" data-page="home" onclick="navigate('home',this)" title="Home">
-    <span class="bottom-nav-icon">🏰</span>
+    <span class="bottom-nav-icon" data-icon="home"></span>
     <span class="bottom-nav-label">Home</span>
   </button>
   <button class="bottom-nav-item" data-page="encounter" onclick="navigate('encounter',this)" title="Encounter Generator">
-    <span class="bottom-nav-icon">📜</span>
+    <span class="bottom-nav-icon" data-icon="encounter"></span>
     <span class="bottom-nav-label">Encounter</span>
   </button>
   <button class="bottom-nav-item" data-page="dice" onclick="navigate('dice',this)" title="Dice Roller">
-    <span class="bottom-nav-icon">🎲</span>
+    <span class="bottom-nav-icon" data-icon="dice"></span>
     <span class="bottom-nav-label">Dice</span>
   </button>
   <button class="bottom-nav-item" data-page="notes" onclick="navigate('notes',this)" title="Session Notes">
-    <span class="bottom-nav-icon">📝</span>
+    <span class="bottom-nav-icon" data-icon="notes"></span>
     <span class="bottom-nav-label">Notes</span>
   </button>
   <button class="bottom-nav-item" data-page="initiative" onclick="navigate('initiative',this)" title="Combat Tracker">
-    <span class="bottom-nav-icon">⚔️</span>
+    <span class="bottom-nav-icon" data-icon="combat"></span>
     <span class="bottom-nav-label">Combat</span>
   </button>
   <button class="bottom-nav-item" data-page="npc" onclick="navigate('npc',this)" title="NPC Forge">
-    <span class="bottom-nav-icon">🧙</span>
+    <span class="bottom-nav-icon" data-icon="npc"></span>
     <span class="bottom-nav-label">NPC</span>
   </button>
   <button class="bottom-nav-item" data-page="tarot" onclick="navigate('tarot',this)" title="Tarot Oracle">
-    <span class="bottom-nav-icon">🃏</span>
+    <span class="bottom-nav-icon" data-icon="tarot"></span>
     <span class="bottom-nav-label">Tarot</span>
   </button>
 </nav>
 
-<audio id="rollSound" src="u_qpfzpydtro-dice-142528.mp3" preload="auto" style="display:none;"></audio>
+<audio id="rollSound" src="assets/audio/dice-roll.mp3" preload="auto" style="display:none;"></audio>
 
 
 <!-- JS Modules - caricati in ordine di dipendenza (defer garantisce DOM pronto + sequenza top-to-bottom) -->
+<script defer src="js/core/icons.js"></script>
 <script defer src="js/data/tarot-data.js"></script>
 <script defer src="js/core/particles.js"></script>
 <script defer src="js/core/persistence.js"></script>

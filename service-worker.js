@@ -1,11 +1,14 @@
-const CACHE_NAME = 'grimoire-pwa-v2';
+const CACHE_NAME = 'grimoire-pwa-v3';
 const PRECACHE_URLS = [
   './',
   './index.html',
   './manifest.webmanifest',
   './styles.css',
-  './u_qpfzpydtro-dice-142528.mp3',
-  './icons/icon.svg',
+  './assets/audio/dice-roll.mp3',
+  './assets/icons/icon.svg',
+  './assets/icons/icon-192.png',
+  './assets/icons/icon-512.png',
+  './js/core/icons.js',
   './js/data/tarot-data.js',
   './js/core/particles.js',
   './js/core/persistence.js',
