@@ -13,28 +13,47 @@
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
+
   <!-- Background -->
   <rect width="512" height="512" rx="96" ry="96" fill="url(#bg)"/>
-  <rect x="8" y="8" width="496" height="496" rx="90" ry="90" fill="none" stroke="rgba(200,146,42,.20)" stroke-width="1.5"/>
-  <!-- Outer arcane ring -->
-  <circle cx="256" cy="256" r="200" fill="none" stroke="rgba(200,146,42,.25)" stroke-width="1.5" stroke-dasharray="12 8" filter="url(#glowSoft)"/>
-  <!-- Mid ring -->
-  <circle cx="256" cy="256" r="165" fill="none" stroke="rgba(200,146,42,.15)" stroke-width="1" stroke-dasharray="8 12"/>
-  <!-- Inner arcane circle -->
-  <circle cx="256" cy="256" r="130" fill="none" stroke="rgba(200,146,42,.30)" stroke-width="1.5" filter="url(#glowSoft)"/>
-  <!-- Cross lines -->
-  <line x1="256" y1="126" x2="256" y2="386" stroke="rgba(200,146,42,.15)" stroke-width="1"/>
-  <line x1="126" y1="256" x2="386" y2="256" stroke="rgba(200,146,42,.15)" stroke-width="1"/>
-  <line x1="164" y1="164" x2="348" y2="348" stroke="rgba(200,146,42,.08)" stroke-width="1"/>
-  <line x1="348" y1="164" x2="164" y2="348" stroke="rgba(200,146,42,.08)" stroke-width="1"/>
-  <!-- Compass star points -->
-  <polygon points="256,135 260,220 256,230 252,220" fill="rgba(240,184,64,.35)" stroke="none"/>
-  <polygon points="256,377 260,292 256,282 252,292" fill="rgba(240,184,64,.35)" stroke="none"/>
-  <polygon points="377,256 292,260 282,256 292,252" fill="rgba(240,184,64,.35)" stroke="none"/>
-  <polygon points="135,256 220,260 230,256 220,252" fill="rgba(240,184,64,.35)" stroke="none"/>
-  <!-- Central letter G -->
-  <text x="256" y="280" text-anchor="middle" font-family="serif" font-size="180" font-weight="700" fill="none" stroke="rgba(200,146,42,.08)" stroke-width="2">G</text>
-  <text x="256" y="280" text-anchor="middle" font-family="serif" font-size="180" font-weight="700" fill="#c8922a" filter="url(#glow)">G</text>
-  <!-- Inner glow circle -->
-  <circle cx="256" cy="256" r="28" fill="rgba(200,146,42,.06)" stroke="rgba(240,184,64,.25)" stroke-width="2"/>
+  <rect x="8" y="8" width="496" height="496" rx="90" ry="90"
+        fill="none" stroke="rgba(200,146,42,.20)" stroke-width="1.5"/>
+
+  <!-- Outer ring: dashed circle + hexagon (matches homepage sigil-ring-outer) -->
+  <g filter="url(#glowSoft)" stroke="rgba(200,146,42,.65)" fill="none">
+    <circle cx="256" cy="256" r="222" stroke-width="2" stroke-dasharray="17 11"/>
+    <polygon points="256,34 478,145 478,367 256,478 34,367 34,145"
+             stroke-width="2.5" stroke="rgba(200,146,42,.40)" opacity=".7"/>
+  </g>
+
+  <!-- Mid ring: dashed circle + hexagon (matches homepage sigil-ring-mid) -->
+  <g stroke="rgba(200,146,42,.55)" fill="none">
+    <circle cx="256" cy="256" r="165" stroke-width="1.6" stroke-dasharray="11 17"/>
+    <polygon points="256,91 399,193 399,319 256,421 113,319 113,193"
+             stroke-width="1.8" opacity=".6"/>
+  </g>
+
+  <!-- Core sigil (matches homepage sigil-core) -->
+  <g stroke="rgba(240,184,64,.90)" fill="none" filter="url(#glow)">
+    <!-- Inner circle -->
+    <circle cx="256" cy="256" r="102" stroke-width="3"/>
+    <!-- Cross lines -->
+    <line x1="256" y1="154" x2="256" y2="358" stroke-width="2"/>
+    <line x1="154" y1="256" x2="358" y2="256" stroke-width="2"/>
+    <!-- Diagonal lines -->
+    <line x1="185" y1="185" x2="327" y2="327" stroke-width="1.6" opacity=".65"/>
+    <line x1="327" y1="185" x2="185" y2="327" stroke-width="1.6" opacity=".65"/>
+    <!-- Small center circle -->
+    <circle cx="256" cy="256" r="23" stroke-width="3.5"
+            fill="rgba(200,146,42,.10)"/>
+    <!-- Compass star points — N S E W -->
+    <polygon points="256,165 264,233 256,244 248,233"
+             fill="rgba(240,184,64,.70)" stroke="none"/>
+    <polygon points="256,347 264,279 256,268 248,279"
+             fill="rgba(240,184,64,.70)" stroke="none"/>
+    <polygon points="347,256 279,264 268,256 279,248"
+             fill="rgba(240,184,64,.70)" stroke="none"/>
+    <polygon points="165,256 233,264 244,256 233,248"
+             fill="rgba(240,184,64,.70)" stroke="none"/>
+  </g>
 </svg>
